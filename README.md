@@ -18,7 +18,11 @@ _...and want to give credit to_
 
 - The components from [Open UI](https://open-ui.org/) to base my own on them for when there is something that native HTML does not provide.
 - [Lit](https://list.dev/) to make it easier writing web components
+- [Open Web Components](https://open-wc.org/), this seems interesting but it's late and I should go to sleep 🛌
 
-* [Open Web Components](https://open-wc.org/), this seems interesting but it's late and I should go to sleep 🛌
+## Other related links
+
+- [webcomponents.dev](https://webcomponents.dev/)
+- [Modern Web](https://modern-web.dev/) like [Open Web Components](https://open-wc.org/)
 
 # </3-Components>
