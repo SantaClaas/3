@@ -10,18 +10,15 @@ export class ClaasOutlinedInput extends LitElement {
     }
   `;
 
-  @property({ type: String }) header = 'Hey there';
+  @property({ type: String }) value: string | undefined;
 
-  @property({ type: Number }) counter = 5;
+  @property({ type: String }) label: string | undefined;
 
-  __increment() {
-    this.counter += 1;
-  }
+  @property({ type: String }) helperText: string | undefined;
+
+  @property({ type: Boolean }) isError = false;
 
   render() {
-    return html`
-      <h2>${this.header} Nr. ${this.counter}!</h2>
-      <button @click=${this.__increment}>increment</button>
-    `;
+    return html``;
   }
 }

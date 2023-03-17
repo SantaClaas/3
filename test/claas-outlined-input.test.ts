@@ -9,8 +9,8 @@ describe('ClaasOutlinedInput', () => {
       html`<claas-outlined-input></claas-outlined-input>`
     );
 
-    expect(el.header).to.equal('Hey there');
-    expect(el.counter).to.equal(5);
+    expect(el.value).to.equal('Hey there');
+    expect(el.helperText).to.equal(5);
   });
 
   it('increases the counter on button click', async () => {
@@ -19,7 +19,7 @@ describe('ClaasOutlinedInput', () => {
     );
     el.shadowRoot!.querySelector('button')!.click();
 
-    expect(el.counter).to.equal(6);
+    expect(el.helperText).to.equal(6);
   });
 
   it('can override the header via attribute', async () => {
@@ -29,7 +29,7 @@ describe('ClaasOutlinedInput', () => {
       ></claas-outlined-input>`
     );
 
-    expect(el.header).to.equal('attribute header');
+    expect(el.value).to.equal('attribute header');
   });
 
   it('passes the a11y audit', async () => {

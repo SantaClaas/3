@@ -3,18 +3,23 @@
 A web component library because I am too lazy to write the same components over and over again in different flavors.
 
 ## Principles
+
 - Keep it simple
   - Behave like native HTML when possible
   - Prefer "pure" functions
+  - Don't use unnecessary abbreviations without explaining them before e.g. "std" for "sexually transmittable disease"
 - Web apps first, web pages second.
   - The intended usage is with web apps which influences things like navigation and other design decisions. But it should work with web pages because it is still native web technologies. Web pages just won't be a priority
   - In my experience web pages and web apps differ in some design decisions
 
 ## Why not use existing component libraries
+
 Because I like to make my life difficult and I like to have control and know the reasons for each tradeoff
 
 ## Naming (Work in Progress)
+
 Things to consider for naming:
+
 - How will the name appear in markup (HTML)?
 - Web Components require a namespace seperated with a dash e.g. "ice-outlined-input"
   - Therefore the name has to be accompanied by a short namespace tag or the name is the tag
@@ -23,6 +28,7 @@ Things to consider for naming:
 That being said...
 
 ### Current contestants
+
 _(basically a list of cool three letter words)_
 
 <table>
@@ -183,7 +189,6 @@ npm start
 
 To run a local development server that serves the basic demo located in `demo/index.html`
 
-
 ## Things I am using or used
 
 _...and want to give credit to_
@@ -209,6 +214,7 @@ _...and want to give credit to_
 - [Modern Web](https://modern-web.dev/) like [Open Web Components](https://open-wc.org/)
 
 ## Native HTML Elements I want to use and remember
+
 - date - for dates I believe...not sure
 - article
 - section
