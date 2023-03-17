@@ -2,6 +2,17 @@
 
 A web component library because I am too lazy to write the same components over and over again in different flavors.
 
+## Principles
+- Keep it simple
+  - Behave like native HTML when possible
+  - Prefer "pure" functions
+- Web apps first, web pages second.
+  - The intended usage is with web apps which influences things like navigation and other design decisions. But it should work with web pages because it is still native web technologies. Web pages just won't be a priority
+  - In my experience web pages and web apps differ in some design decisions
+
+## Why not use existing component libraries
+Because I like to make my life difficult and I like to have control and know the reasons for each tradeoff
+
 ## Naming (Work in Progress)
 Things to consider for naming:
 - How will the name appear in markup (HTML)?
@@ -10,7 +21,9 @@ Things to consider for naming:
   - The tag/namespace should not be more than 3 letters. There needs to be a good reason for more than 3 letters (e.g. it's an awesome name).
 
 That being said...
+
 ### Current contestants
+_(basically a list of cool three letter words)_
 
 <table>
   <thead>
@@ -41,6 +54,26 @@ That being said...
       <td>tri</td>
       <td></td>
       <td></td>
+    </tr>
+    <tr>
+      <td>sue</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>iii</td>
+      <td>
+      <ul>
+        <li>it's like "3" but in roman if I want to go with the "3" naming</li>
+        <li>3 is my favorite number</li>
+      </ul>
+      </td>
+      <td>
+        <ul>
+          <li>Sounds weird if you speak it out loud</li>
+          <li>It sounds like the German equivalent of "eww"</li>
+        </ul>
+      </td>
     </tr>
     <tr>
       <td>flavor / flv / flr / fvr</td>
@@ -174,3 +207,10 @@ _...and want to give credit to_
 
 - [webcomponents.dev](https://webcomponents.dev/)
 - [Modern Web](https://modern-web.dev/) like [Open Web Components](https://open-wc.org/)
+
+## Native HTML Elements I want to use and remember
+- date - for dates I believe...not sure
+- article
+- section
+- header
+- footer
