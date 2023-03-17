@@ -1,5 +1,97 @@
 # Web Components Library looking for a name
 
+A web component library because I am too lazy to write the same components over and over again in different flavors.
+
+## Naming (Work in Progress)
+Things to consider for naming:
+- How will the name appear in markup (HTML)?
+- Web Components require a namespace seperated with a dash e.g. "ice-outlined-input"
+  - Therefore the name has to be accompanied by a short namespace tag or the name is the tag
+  - The tag/namespace should not be more than 3 letters. There needs to be a good reason for more than 3 letters (e.g. it's an awesome name).
+
+That being said...
+### Current contestants
+
+<table>
+  <thead>
+    <tr>
+      <th>
+        Contestant
+      </th>
+      <th>
+        Pros
+      </th>
+      <th>
+        Cons
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>bey</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>ice</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>tri</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>flavor / flv / flr / fvr</td>
+      <td>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>claas</td>
+      <td>
+       <ul>
+          <li>
+          I'm a narcissist and my name is awesome (shoutout to my parents! you are awesome!)
+          </li>
+          <li>
+          and it's basically my for use in my projects
+          </li>
+        </ul>
+      </td>
+      <td>
+       <ul>
+          <li>
+          No one likes my name plastered all over their project when I am collaborating
+          </li>
+          <li>
+          People think I'm a narcissist
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">"Do I want people to take me seriously"-ideas</td>
+    </tr>
+    <tr>
+      <td>flu</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>sh-t</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>f-ck</td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
 ## Installation
 
 ```bash
@@ -58,8 +150,6 @@ npm start
 
 To run a local development server that serves the basic demo located in `demo/index.html`
 
-A web component library for me to reuse components I otherwise often duplicate in different projects
-3, because 3 is my favorite number.
 
 ## Things I am using or used
 
