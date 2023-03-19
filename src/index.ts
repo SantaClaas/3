@@ -1,1 +1,1 @@
-export { ClaasOutlinedInput } from './ClaasOutlinedInput.js';
+export { DimOutlinedInput } from './DimOutlinedInput.js';

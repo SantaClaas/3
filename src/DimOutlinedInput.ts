@@ -1,12 +1,18 @@
 import { html, css, LitElement } from 'lit';
 import { property } from 'lit/decorators.js';
 
-export class ClaasOutlinedInput extends LitElement {
+export class DimOutlinedInput extends LitElement {
   static styles = css`
+    /* @import 'open-props/shadow/style'; */
+
     :host {
-      display: block;
-      padding: 25px;
-      color: var(--claas-outlined-input-text-color, #000);
+    }
+
+    .container {
+    }
+
+    .container:focus-within {
+      border-color: var(--purple-5);
     }
   `;
 
@@ -19,6 +25,10 @@ export class ClaasOutlinedInput extends LitElement {
   @property({ type: Boolean }) isError = false;
 
   render() {
-    return html``;
+    return html`
+      <div>
+        <div class="container">dada</div>
+      </div>
+    `;
   }
 }

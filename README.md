@@ -47,6 +47,26 @@ _(basically a list of cool three letter words)_
   </thead>
   <tbody>
     <tr>
+      <td>dim</td>
+      <td colspan="2">
+        THIS IS IT! WE FOUND IT! ✅ (might change opinion later)
+        <ul>
+          <li>
+          it has 3 letters
+          </li>
+          <li>
+          it is the opposite of "lit" which is a web components library, which is funny (at least to me)
+          </li>
+          <li>
+          the theme I am going for is quite "dim"
+          </li>
+          <li>
+          you could say I'm not the brightest or...pretty dim 🤡
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
       <td>bey</td>
       <td></td>
       <td></td>
