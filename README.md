@@ -90,10 +90,11 @@ _...and want to give credit to_
   - [GUI Challenges](https://youtube.com/playlist?list=PLNYkxOF6rcIAaV1wwI9540OC_3XoIzMjQ) presented by Adam Argyle on Google Chrome Developers
   - [Creating Web Components - With Special Guest Dave Rupert!](https://youtu.be/Sq5oiHjwFxI) presented by Dave Rupert and Kevin Powell
 
-## Things I want to try
+## Things I want to use
 
 - The components from [Open UI](https://open-ui.org/) to base my own on them for when there is something that native HTML does not provide.
 - [Open Props](https://open-props.style/) seems to be a great base line for styling and will make things easier
+- A calendar component based on [Making Calendars With Accessibility and Internationalization in Mind](https://css-tricks.com/making-calendars-with-accessibility-and-internationalization-in-mind/] by Mads Stoumann on CSS-Tricks
 
 ## Other related links
 
