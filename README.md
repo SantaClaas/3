@@ -1,4 +1,5 @@
-# Web Components Library looking for a name
+# Dim - because [claas](https://claas.dev) is not very bright
+> _(It's a joke because...oh...ok...I ruined it...)_
 
 A web component library because I am too lazy to write the same components over and over again in different flavors.
 
