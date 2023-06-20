@@ -125,18 +125,33 @@ export class DimOutlinedInput extends LitElement {
       --border-color: var(--md-sys-color-outline);
     }
 
-    .group .fillers .filler-start {
-      border-width: 1px 0 1px 1px;
-      border-radius: 0.375rem 0 0 0.375rem;
-      width: 1rem;
-      border-color: var(--border-color);
-    }
+    .group {
+      & .fillers {
+        & .filler-start {
+          border-width: 1px 0 1px 1px;
+          border-radius: 0.375rem 0 0 0.375rem;
+          width: 16px;
+          border-color: var(--border-color);
+        }
 
-    .group .fillers .filler-middle {
-      padding: 0 0.125rem 0 0.25rem;
+        & .filler-middle {
+          padding: 1px 0 0 0;
+          max-width: calc(100% - 24px);
+          width: auto;
+          border-width: 1px 0;
+          border-color: var(--border-color);
 
-      border-width: 1px 0;
-      border-color: var(--border-color);
+          /* ? */
+          flex: 0 0 auto;
+        }
+
+        & .filler-end {
+          border-width: 1px 1px 1px 0;
+          border-radius: 0 0.375rem 0.375rem 0;
+          border-color: var(--border-color);
+          flex-grow: 1;
+        }
+      }
     }
 
     .group .fillers .filler-middle label {
@@ -161,14 +176,6 @@ export class DimOutlinedInput extends LitElement {
       letter-spacing: var(--md-sys-typescale-body-large-letter-spacing);
     }
 
-    .group .fillers .filler-end {
-      border-width: 1px 1px 1px 0;
-      border-radius: 0 0.375rem 0.375rem 0;
-      border-color: var(--border-color);
-
-      width: 100%;
-    }
-
     /* FOCUS */
     /* Only remove border top when label moves up e.g focus, not-empty, placeholder shown */
     .group:focus-within .fillers {
@@ -178,7 +185,8 @@ export class DimOutlinedInput extends LitElement {
       border-width: 2px 0 2px 2px;
     }
     .group:focus-within .fillers .filler-middle {
-      border-width: 2px 0;
+      padding-top: 2px;
+      border-width: 0 0 2px 0;
       /* border-t-transparent */
       border-top-color: transparent;
     }
@@ -187,6 +195,7 @@ export class DimOutlinedInput extends LitElement {
       border-top-color: transparent;
     }
     .group:has(input:not([empty])) .fillers .filler-middle label {
+      padding: 0 1px;
       translate: 0 -0.5rem;
       font-size: var(--md-sys-typescale-body-small-font-size);
       line-height: var(--md-sys-typescale-body-small-line-height);
