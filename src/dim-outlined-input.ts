@@ -1,18 +1,24 @@
 import { LitElement, css, html } from "lit";
-import { customElement } from "lit/decorators.js";
+import { customElement, property, state } from "lit/decorators.js";
 
 @customElement("dim-outlined-input")
 export class DimOutlinedInput extends LitElement {
-  #isEmpty = false;
+  @property({ type: String })
+  value: string = "";
+
   #oninput(event: Event) {
-    const value = (event.target as HTMLInputElement).value;
-    this.#isEmpty = !value && value.length === 0;
+    this.value = (event.target as HTMLInputElement).value;
   }
 
   render() {
     return html`<div>
       <div class="group">
-        <input id="input" @input=${this.#oninput} ?empty=${this.#isEmpty} />
+        <input
+          id="input"
+          @input=${this.#oninput}
+          ?empty=${!this.value}
+          .value=${this.value}
+        />
         <div class="fillers">
           <!-- Filler start -->
           <div class="filler-start"></div>
@@ -134,6 +140,9 @@ export class DimOutlinedInput extends LitElement {
     }
 
     .group .fillers .filler-middle label {
+      /* Allow users to copy code and inputs divert focus to their input on click.
+      The other elements have no pointer events because they don't have text and overlap the input that should be selected */
+      pointer-events: auto;
       display: block;
       color: var(--md-sys-color-on-surface-variant);
 
@@ -224,8 +233,7 @@ export class DimOutlinedInput extends LitElement {
       --border-color: var(--md-sys-color-on-surface);
     }
 
-    .group:hover .fillers .filler-start label,
-    .group:hover:not(:focus-within) input {
+    .group:hover:not(:focus-within) .fillers .filler-middle input {
       color: var(--md-sys-color-on-surface);
     }
   `;
