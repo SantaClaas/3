@@ -6,6 +6,9 @@ export class DimOutlinedInput extends LitElement {
   @property({ type: String })
   value: string = "";
 
+  @property({ type: Boolean })
+  autofocus: boolean = false;
+
   #oninput(event: Event) {
     this.value = (event.target as HTMLInputElement).value;
   }
@@ -18,6 +21,7 @@ export class DimOutlinedInput extends LitElement {
           @input=${this.#oninput}
           ?empty=${!this.value}
           .value=${this.value}
+          ?autofocus=${this.autofocus}
         />
         <div class="fillers">
           <!-- Filler start -->
@@ -78,7 +82,7 @@ export class DimOutlinedInput extends LitElement {
         /* leading-none */
         line-height: 1;
 
-        padding: 14px 1rem;
+        padding: 16px;
 
         border-radius: 0.375rem;
 
@@ -124,7 +128,7 @@ export class DimOutlinedInput extends LitElement {
         }
 
         & .filler-middle {
-          padding: 1px 0 0 0;
+          padding: 3px 0 0 0;
           width: auto;
           border-width: 1px 0;
           border-color: var(--border-color);
@@ -162,15 +166,17 @@ export class DimOutlinedInput extends LitElement {
     }
 
     /* States:
-      - focus
       - empty
+      - focus
       - hover
       - disabled
       - error */
 
-    /* FOCUS */
+    /* EMPTY, FOCUS */
     /* Only remove border top when label moves up e.g focus, not-empty, placeholder shown */
-    .group:focus-within {
+    .group:has(input[empty]):focus-within,
+    /* NOT EMPTY, FOCUS */
+    .group:has(input:not([empty])):focus-within {
       & input {
         color: var(--md-sys-color-primary);
       }
@@ -190,7 +196,6 @@ export class DimOutlinedInput extends LitElement {
           border-top-color: transparent;
 
           & label {
-            /* translate: 0 -0.5rem; */
             translate: 0 -50%;
             color: var(--md-sys-color-primary);
             font-size: var(--md-sys-typescale-body-small-font-size);
@@ -204,12 +209,14 @@ export class DimOutlinedInput extends LitElement {
       }
     }
 
-    /* NOT EMPTY */
-    .group:has(input:not([empty])) {
+    /* NOT EMPTY, NOT FOCUS */
+    .group:has(input:not([empty])):not(:focus-within) {
       & .fillers .filler-middle {
         border-top-color: transparent;
+        padding-top: 2px;
+        border-width: 0 0 1px 0;
         & label {
-          translate: 0 -0.5rem;
+          translate: 0 -50%;
           font-size: var(--md-sys-typescale-body-small-font-size);
           line-height: var(--md-sys-typescale-body-small-line-height);
         }
