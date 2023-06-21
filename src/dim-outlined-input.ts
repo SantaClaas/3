@@ -9,6 +9,9 @@ export class DimOutlinedInput extends LitElement {
   @property({ type: Boolean })
   autofocus: boolean = false;
 
+  @property({ type: String })
+  placeholder: string = "";
+
   #oninput(event: Event) {
     this.value = (event.target as HTMLInputElement).value;
   }
@@ -22,6 +25,7 @@ export class DimOutlinedInput extends LitElement {
           ?empty=${!this.value}
           .value=${this.value}
           ?autofocus=${this.autofocus}
+          .placeholder=${this.placeholder}
         />
         <div class="fillers">
           <!-- Filler start -->
@@ -45,23 +49,7 @@ export class DimOutlinedInput extends LitElement {
       box-sizing: border-box;
       border-width: 0;
       border-style: solid;
-      /* border-color: var(--md-sys-color-outline); */
     }
-
-    /* normalize
-        input {
-      font-family: inherit;
-      font-size: 100%;
-      font-weight: inherit;
-      line-height: inherit;
-      color: inherit;
-      margin: 0;
-      padding: 0;
-       Using invisible border so label text and content text are on same height
-      border-width: 1px 0;
-      border-color: transparent;
-    }
-    */
 
     .group {
       position: relative;
@@ -123,7 +111,9 @@ export class DimOutlinedInput extends LitElement {
         & .filler-start {
           border-width: 1px 0 1px 1px;
           border-radius: 0.375rem 0 0 0.375rem;
-          width: 16px;
+          /* The width should default to 16px but for the label to align with the input we need to substract the label
+           padding of 4px */
+          width: 12px;
           border-color: var(--border-color);
         }
 
@@ -147,6 +137,7 @@ export class DimOutlinedInput extends LitElement {
             transition-duration: 150ms;
 
             translate: 0 50%;
+            padding: 0 4px;
 
             font-family: var(--md-sys-typescale-body-large-font-family-name);
             line-height: var(--md-sys-typescale-body-large-line-height);
@@ -197,6 +188,7 @@ export class DimOutlinedInput extends LitElement {
 
           & label {
             translate: 0 -50%;
+            padding: 0 4px;
             color: var(--md-sys-color-primary);
             font-size: var(--md-sys-typescale-body-small-font-size);
             line-height: var(--md-sys-typescale-body-small-line-height);
@@ -217,6 +209,7 @@ export class DimOutlinedInput extends LitElement {
         border-width: 0 0 1px 0;
         & label {
           translate: 0 -50%;
+          padding: 0 4px;
           font-size: var(--md-sys-typescale-body-small-font-size);
           line-height: var(--md-sys-typescale-body-small-line-height);
         }
