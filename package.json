@@ -2,7 +2,12 @@
   "name": "@claas.dev/dim",
   "private": false,
   "license": "Apache-2.0",
-  "version": "0.0.1",
+  "homepage": "https://github.com/santaclaas/dim",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/santaclaas/dim.git"
+  },
+  "version": "0.0.2",
   "type": "module",
   "scripts": {
     "dev": "vite",
