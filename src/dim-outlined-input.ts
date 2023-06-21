@@ -1,8 +1,11 @@
-import { LitElement, css, html } from "lit";
-import { customElement, property, state } from "lit/decorators.js";
+import { LitElement, css, html, nothing } from "lit";
+import { customElement, property } from "lit/decorators.js";
 
 @customElement("dim-outlined-input")
 export class DimOutlinedInput extends LitElement {
+  @property({ type: String })
+  label: string | undefined = undefined;
+
   @property({ type: String })
   value: string = "";
 
@@ -13,32 +16,56 @@ export class DimOutlinedInput extends LitElement {
   placeholder: string = "";
 
   #oninput(event: Event) {
+    // Keep the value up to date to be read by external event listeners through the event.target.value property
+    // And this is also needed to keep the value up to date for the empty attribute
     this.value = (event.target as HTMLInputElement).value;
+    // The input event is composed so we don't need to refire it
+  }
+
+  #onchange(event: Event) {
+    // Need to refire the event because the event is not composed
+    const newEvent = new Event("change", {
+      bubbles: event.bubbles,
+      composed: event.composed,
+      cancelable: event.cancelable,
+    });
+    this.dispatchEvent(newEvent);
   }
 
   render() {
-    return html`<div>
-      <div class="group">
-        <input
-          id="input"
-          @input=${this.#oninput}
-          ?empty=${!this.value}
-          .value=${this.value}
-          ?autofocus=${this.autofocus}
-          .placeholder=${this.placeholder}
-        />
-        <div class="fillers">
-          <!-- Filler start -->
-          <div class="filler-start"></div>
-          <!-- Filler middle -->
-          <div class="filler-middle">
-            <label for="input">Label text 1</label>
+    return html`
+      <div>
+        <div class="group">
+          <input
+            id="input"
+            @input=${this.#oninput}
+            ?empty=${!this.value}
+            .value=${this.value}
+            ?autofocus=${this.autofocus}
+            .placeholder=${this.placeholder}
+            @change=${this.#onchange}
+          />
+          <div class="fillers">
+            <!-- Filler start -->
+            <div class="filler-start"></div>
+            ${
+              // The label is technically not optional by spec as far as I can tell but we can't control how users use
+              // our component so we need to handle the case where the label is not provided
+              this.label
+                ? html`
+                    <!-- Filler middle -->
+                    <div class="filler-middle">
+                      <label for="input">${this.label}</label>
+                    </div>
+                  `
+                : nothing
+            }
+            <!-- Filler end -->
+            <div class="filler-end"></div>
           </div>
-          <!-- Filler end -->
-          <div class="filler-end"></div>
         </div>
       </div>
-    </div>`;
+    `;
   }
 
   static styles = css`
@@ -161,7 +188,13 @@ export class DimOutlinedInput extends LitElement {
       - focus
       - hover
       - disabled
-      - error */
+      - error
+      (- placeholder shown)
+      (- supporting text)
+      (- character count)
+      (- character limit)
+      (- leading icon)
+      (- trailing icon) */
 
     /* EMPTY, FOCUS */
     /* Only remove border top when label moves up e.g focus, not-empty, placeholder shown */

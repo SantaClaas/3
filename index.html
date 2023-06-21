@@ -15,9 +15,21 @@
 </head>
 
 <body>
-  <dim-outlined-input></dim-outlined-input>
+  <dim-outlined-input label="Label text"></dim-outlined-input>
   <br>
-  <dim-outlined-input></dim-outlined-input>
+  <dim-outlined-input label="Label text" value="value"></dim-outlined-input>
+  <br>
+  <dim-outlined-input label="Label text" autofocus></dim-outlined-input>
+
+  <script>
+    const input = document.querySelector('dim-outlined-input');
+    console.log(input);
+    input.addEventListener('change', (event) => {
+      console.log("Mine", event, event.target.value);
+    });
+
+    console.log("Added event listener outside", input)
+  </script>
 </body>
 
 </html>
