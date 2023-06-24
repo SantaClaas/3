@@ -15,6 +15,9 @@ export class DimOutlinedInput extends LitElement {
   @property({ type: String })
   placeholder: string = " ";
 
+  @property({ type: Boolean })
+  disabled: boolean = false;
+
   #oninput(event: Event) {
     // Keep the value up to date to be read by external event listeners through the event.target.value property
     // And this is also needed to keep the value up to date for the empty attribute
@@ -38,10 +41,11 @@ export class DimOutlinedInput extends LitElement {
         <div class="group">
           <input
             id="input"
-            @input=${this.#oninput}
             .value=${this.value}
-            ?autofocus=${this.autofocus}
             .placeholder=${this.placeholder}
+            ?autofocus=${this.autofocus}
+            ?disabled=${this.disabled}
+            @input=${this.#oninput}
             @change=${this.#onchange}
           />
           <div class="fillers">
@@ -302,7 +306,7 @@ export class DimOutlinedInput extends LitElement {
     }
 
     /* HOVER (Focus should overwrite hover) */
-    .group:hover:not(:focus-within) {
+    .group:hover:not(:focus-within):has(input:not(:disabled)) {
       & .fillers {
         --border-color: var(--md-sys-color-on-surface);
 
