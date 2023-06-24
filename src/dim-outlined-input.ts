@@ -227,7 +227,7 @@ export class DimOutlinedInput extends LitElement {
 
         & .filler-middle {
           /* Padding to account for border size increase. This avoids the label layout shift */
-          padding-top: 2px;
+          padding-top: 1px;
           border-width: 0 0 2px 0;
           border-top-color: transparent;
 
@@ -251,7 +251,7 @@ export class DimOutlinedInput extends LitElement {
       & .fillers {
         & .filler-middle {
           /* border-top-color: transparent; */
-          padding-top: 2px;
+          padding-top: 1px;
           border-width: 0 0 1px 0;
           & label {
             translate: 0 -50%;
@@ -269,7 +269,7 @@ export class DimOutlinedInput extends LitElement {
     .group:has(input:not(:placeholder-shown)):not(:focus-within) {
       & .fillers .filler-middle {
         border-top-color: transparent;
-        padding-top: 2px;
+        padding-top: 1px;
         border-width: 0 0 1px 0;
         & label {
           translate: 0 -50%;
