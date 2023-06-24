@@ -13,7 +13,7 @@ export class DimOutlinedInput extends LitElement {
   autofocus: boolean = false;
 
   @property({ type: String })
-  placeholder: string = "";
+  placeholder: string = " ";
 
   #oninput(event: Event) {
     // Keep the value up to date to be read by external event listeners through the event.target.value property
@@ -39,7 +39,6 @@ export class DimOutlinedInput extends LitElement {
           <input
             id="input"
             @input=${this.#oninput}
-            ?empty=${!this.value}
             .value=${this.value}
             ?autofocus=${this.autofocus}
             .placeholder=${this.placeholder}
@@ -183,24 +182,33 @@ export class DimOutlinedInput extends LitElement {
       }
     }
 
-    /* States:
-      - empty
-      - focus
-      - hover
-      - disabled
+    /* States: (This is going to be a great binary tree)
+      - empty -> :placeholder-shown (not empty -> :not(:placeholder-shown)
+      - focus -> :focus-within
+      - hover -> :hover
+      - disabled -> :disabled
       - error
-      (- placeholder shown)
+      - placeholder -> :not([placeholder=" "]) (no placeholder -> [placeholder=" "])
       (- supporting text)
       (- character count)
       (- character limit)
       (- leading icon)
-      (- trailing icon) */
+      (- trailing icon)
+      (- autofilled -> :autofill )
+      (- AND ALL THE DIFFERENT TYPES OF INPUT ) */
 
-    /* EMPTY, FOCUS */
-    /* Only remove border top when label moves up e.g focus, not-empty, placeholder shown */
-    .group:has(input[empty]):focus-within,
-    /* NOT EMPTY, FOCUS */
-    .group:has(input:not([empty])):focus-within {
+    /* NOT EMPTY, FOCUS, NO PLACEHOLDER */
+    /*              |-NO-PLACEHOLDER||-NOT-EMPTY------------| |-FOCUS-------| */
+    .group:has(input[placeholder=" "]:not(:placeholder-shown)):focus-within,
+    /* NOT EMPTY, FOCUS, PLACEHOLDER */
+    /*              |-PLACEHOLDER--------| |-NOT-EMPTY------------| |-FOCUS-----| */
+    .group:has(input:not([placeholder=" "]):not(:placeholder-shown)):focus-within,
+    /* EMPTY,     FOCUS, PLACEHOLDER */
+    /*              |-PLACEHOLDER--------| |-EMPTY----------| |-FOCUS-------| */
+    .group:has(input:not([placeholder=" "]):placeholder-shown):focus-within,
+    /* EMPTY,     FOCUS, NO PLACEHOLDER */
+    /*              |-NO-PLACEHOLDER||-EMPTY----------| |-FOCUS-------| */
+    .group:has(input[placeholder=" "]:placeholder-shown):focus-within {
       & input {
         color: var(--md-sys-color-primary);
       }
@@ -234,8 +242,27 @@ export class DimOutlinedInput extends LitElement {
       }
     }
 
+    /* When placeholder is filled (:not([placeholder=" "])) and it is shown, and the it is empty, move label up */
+    .group:has(input:not([placeholder=" "]):placeholder-shown) {
+      & .fillers {
+        & .filler-middle {
+          /* border-top-color: transparent; */
+          padding-top: 2px;
+          border-width: 0 0 1px 0;
+          & label {
+            translate: 0 -50%;
+            padding: 0 4px;
+            font-size: var(--md-sys-typescale-body-small-font-size);
+            line-height: var(--md-sys-typescale-body-small-line-height);
+          }
+        }
+      }
+    }
+
+    /* We check if input is empty with a dirty trick that looks for the placeholder not being shown when the placeholder
+      is a space character that looks to the user as if there was no placeholder */
     /* NOT EMPTY, NOT FOCUS */
-    .group:has(input:not([empty])):not(:focus-within) {
+    .group:has(input:not(:placeholder-shown)):not(:focus-within) {
       & .fillers .filler-middle {
         border-top-color: transparent;
         padding-top: 2px;
