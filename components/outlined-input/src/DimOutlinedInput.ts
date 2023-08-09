@@ -1,19 +1,16 @@
-import { LitElement, css, html, nothing } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import { LitElement, css, html, nothing } from 'lit';
+import { customElement, property } from 'lit/decorators.js';
 
-@customElement("dim-outlined-input")
+@customElement('dim-outlined-input')
 export class DimOutlinedInput extends LitElement {
   @property({ type: String })
   label: string | undefined = undefined;
 
   @property({ type: String })
-  value: string = "";
-
-  @property({ type: Boolean })
-  autofocus: boolean = false;
+  value: string = '';
 
   @property({ type: String })
-  placeholder: string = " ";
+  placeholder: string = ' ';
 
   @property({ type: Boolean })
   disabled: boolean = false;
@@ -27,7 +24,7 @@ export class DimOutlinedInput extends LitElement {
 
   #onchange(event: Event) {
     // Need to refire the event because the event is not composed
-    const newEvent = new Event("change", {
+    const newEvent = new Event('change', {
       bubbles: event.bubbles,
       composed: event.composed,
       cancelable: event.cancelable,
@@ -247,7 +244,7 @@ export class DimOutlinedInput extends LitElement {
     }
 
     /* When placeholder is filled (:not([placeholder=" "])) and it is shown, and the it is empty, move label up */
-    .group:has(input:not([placeholder=" "]):placeholder-shown) {
+    .group:has(input:not([placeholder=' ']):placeholder-shown) {
       & .fillers {
         & .filler-middle {
           /* border-top-color: transparent; */
@@ -320,6 +317,6 @@ export class DimOutlinedInput extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    "dim-outlined-input": DimOutlinedInput;
+    'dim-outlined-input': DimOutlinedInput;
   }
 }

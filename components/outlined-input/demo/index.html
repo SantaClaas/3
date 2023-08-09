@@ -1,18 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en-US">
 
 <head>
-  <meta charset="UTF-8" />
-  <base href="/" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta charset="utf-8">
+  <base href="/demo/" />
+  <link rel="icon" type="image/svg+xml" href="vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dim Components</title>
-  <!-- <link rel="stylesheet" href="./src/index.css" /> -->
-  <script type="module" src="/src/dim-outlined-input.ts"></script>
-  <link rel="stylesheet" href="/css/theme.css" />
-  <link rel="stylesheet" href="/style.css" />
+
+  <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="fonts/style.css" />
   <meta name="color-scheme" content="dark" />
+  <script src="../dist/src/dim-outlined-input.js" type="module"></script>
   <style>
+    /* Use default font so demo app looks nice */
     :root {
       font-family: 'Roboto', sans-serif;
     }
@@ -23,6 +24,7 @@
   <h1>Components</h1>
   <h2>Outlined Input</h2>
   <h3>Default (not recommended)</h3>
+  <p>This state is presentable and does not error but it is intended to be used with a label attribute</p>
   <dim-outlined-input></dim-outlined-input>
   <h3>Label</h3>
   <dim-outlined-input label="Label text"></dim-outlined-input>
@@ -36,15 +38,6 @@
   <h3>Disabled</h3>
   <dim-outlined-input label="Label text" disabled></dim-outlined-input>
 
-  <script>
-    const input = document.querySelector('dim-outlined-input');
-    console.log(input);
-    input.addEventListener('change', (event) => {
-      console.log("Mine", event, event.target.value);
-    });
-
-    console.log("Added event listener outside", input)
-  </script>
 </body>
 
 </html>

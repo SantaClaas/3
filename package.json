@@ -1,24 +1,11 @@
 {
-  "name": "@claas.dev/dim",
-  "private": false,
-  "license": "Apache-2.0",
-  "homepage": "https://github.com/santaclaas/dim",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/santaclaas/dim.git"
-  },
-  "version": "0.0.2",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "lit": "^2.7.2"
-  },
+  "name": "root",
+  "private": true,
+  "workspaces": [
+    "components/*"
+  ],
+  "dependencies": {},
   "devDependencies": {
-    "typescript": "^5.0.2",
-    "vite": "^4.3.9"
+    "lerna": "^7.1.4"
   }
 }
