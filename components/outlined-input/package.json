@@ -14,6 +14,7 @@
   "files": [
     "dist/src"
   ],
+  "types": "dist/src/index.d.ts",
   "scripts": {
     "analyze": "cem analyze --litelement",
     "dev": "tsc --watch --preserveWatchOutput",
