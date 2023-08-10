@@ -13,6 +13,7 @@
   },
   "scripts": {
     "analyze": "cem analyze --litelement",
+    "dev": "tsc --watch --preserveWatchOutput",
     "start": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wds\"",
     "build": "tsc && npm run analyze -- --exclude dist",
     "prepublish": "tsc && npm run analyze -- --exclude dist",
