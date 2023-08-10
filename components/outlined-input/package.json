@@ -3,7 +3,7 @@
   "description": "Webcomponent dim-outlined-input following open-wc recommendations",
   "license": "Apache-2.0",
   "author": "Claas",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "type": "module",
   "main": "dist/src/index.js",
   "module": "dist/src/index.js",
