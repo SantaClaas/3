@@ -1,7 +1,7 @@
 {
   "name": "page",
   "private": true,
-  "version": "0.0.3",
+  "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@claas.dev/dim-outlined-input": "^0.0.3"
+    "@claas.dev/dim-outlined-input": "*"
   },
   "devDependencies": {
     "typescript": "^5.0.2",
