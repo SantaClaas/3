@@ -1,0 +1,19 @@
+{
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "nx/tasks-runners/default",
+      "options": {
+        "cacheableOperations": ["analyze", "build", "lint", "format"]
+      }
+    }
+  },
+  "targetDefaults": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["{projectRoot}/dist", "{projectRoot}/custom-elements.json"]
+    },
+    "analyze": {
+      "outputs": ["{projectRoot}/custom-elements.json"]
+    }
+  }
+}

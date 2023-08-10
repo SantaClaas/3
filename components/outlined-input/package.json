@@ -1,5 +1,5 @@
 {
-  "name": "outlined-input",
+  "name": "@claas.dev/dim-outlined-input",
   "description": "Webcomponent dim-outlined-input following open-wc recommendations",
   "license": "Apache-2.0",
   "author": "Claas",
