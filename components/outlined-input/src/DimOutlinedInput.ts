@@ -10,7 +10,7 @@ export class DimOutlinedInput extends LitElement {
   value: string = '';
 
   @property({ type: String })
-  placeholder: string = ' ';
+  placeholder: string | undefined = undefined;
 
   @property({ type: Boolean })
   disabled: boolean = false;
@@ -39,7 +39,7 @@ export class DimOutlinedInput extends LitElement {
           <input
             id="input"
             .value=${this.value}
-            .placeholder=${this.placeholder}
+            .placeholder=${this.placeholder ?? ' '}
             ?autofocus=${this.autofocus}
             ?disabled=${this.disabled}
             @input=${this.#oninput}
