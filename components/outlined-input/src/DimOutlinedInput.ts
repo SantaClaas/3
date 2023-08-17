@@ -1,7 +1,7 @@
 import { LitElement, css, html, nothing } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { property } from 'lit/decorators.js';
 
-@customElement('dim-outlined-input')
+// @customElement('dim-outlined-input')
 export class DimOutlinedInput extends LitElement {
   @property({ type: String })
   label: string | undefined = undefined;
@@ -90,11 +90,9 @@ export class DimOutlinedInput extends LitElement {
         transition-duration: 150ms;
         background-color: var(--md-sys-color-surface);
 
-        /* outline-none */
         outline: 2px solid transparent;
         outline-offset: 2px;
 
-        /* leading-none */
         line-height: 1;
 
         padding: 16px;

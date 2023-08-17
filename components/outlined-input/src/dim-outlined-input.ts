@@ -1,1 +1,3 @@
-export { DimOutlinedInput } from './DimOutlinedInput.js';
+import { DimOutlinedInput } from './DimOutlinedInput.js';
+
+window.customElements.define('dim-outlined-input', DimOutlinedInput);

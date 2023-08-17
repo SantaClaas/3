@@ -9,7 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@claas.dev/dim-outlined-input": "*"
+    "@claas.dev/dim-outlined-input": "*",
+    "@claas.dev/dim-elevated-button": "*"
   },
   "devDependencies": {
     "typescript": "^5.0.2",
