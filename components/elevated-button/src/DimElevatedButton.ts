@@ -54,7 +54,7 @@ export class DimElevatedButton extends LitElement {
       }
     }
 
-    button {
+    button:enabled {
       border: none;
       background-color: var(--md-sys-color-surface-container-low);
       box-shadow: var(--md-sys-elevation-1-shadow);
@@ -76,13 +76,13 @@ export class DimElevatedButton extends LitElement {
       display: flex;
       align-items: center;
       gap: 8px;
-    }
 
-    [name='icon']::slotted(*) {
-      display: inline-block;
-      height: 18px;
-      width: 18px;
-      margin-inline-start: -8px;
+      & [name='icon']::slotted(*) {
+        display: inline-block;
+        height: 18px;
+        width: 18px;
+        margin-inline-start: -8px;
+      }
     }
   `;
 }
