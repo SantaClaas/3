@@ -2,20 +2,8 @@ import { LitElement, css, html } from 'lit';
 
 export class DimElevatedButton extends LitElement {
   render() {
-    return html`<button
-      @click=${() => {
-        console.log('click');
-      }}
-    >
-      <svg
-        height="48"
-        width="48"
-        fill="currentColor"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 -960 960 960"
-      >
-        <path d="M450-450H200v-60h250v-250h60v250h250v60H510v250h-60v-250Z" />
-      </svg>
+    return html`<button>
+      <slot name="icon"></slot>
       <slot></slot>
     </button>`;
   }
@@ -75,36 +63,26 @@ export class DimElevatedButton extends LitElement {
       font-family: var(--md-sys-typescale-label-large-font-family-name);
       line-height: var(--md-sys-typescale-label-large-line-height);
       font-size: var(--md-sys-typescale-label-large-font-size);
+      font-style: var(--md-sys-typecale-label-large-font-style);
       letter-spacing: var(--md-sys-typescale-label-large-letter-spacing);
       font-weight: var(--md-sys-typescale-label-large-font-weight);
 
-      padding-inline: 16px 24px;
+      padding-inline: 24px;
       padding-block: 10px;
       height: 40px;
       border-radius: 20px;
       text-align: center;
+      /* Have to use display flex to remove funky space between inline elements. As of 2023 there is no other viable solution */
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    svg,
-    slot {
-      vertical-align: middle;
-      text-align: center;
-    }
-    svg,
-    slot[name='icon'] {
+    [name='icon']::slotted(*) {
       display: inline-block;
-      /* Adding 8 so we get to 24 with or without icon */
-      margin-inline-end: 8px;
-      /* height: 100%; */
-      height: 20px;
-      width: 20px;
-      aspect-ratio: 1;
-      /* color: var(--md-sys-color-primary); */
-    }
-
-    ::slotted(*) {
-      display: inline-block;
-      /* height: 100%; */
+      height: 18px;
+      width: 18px;
+      margin-inline-start: -8px;
     }
   `;
 }
