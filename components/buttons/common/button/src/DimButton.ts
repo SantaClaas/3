@@ -38,6 +38,8 @@ export abstract class DimButton extends LitElement {
       --md-sys-elevation-dark-5-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.3),
         0px 8px 12px 6px rgba(0, 0, 0, 0.15);
 
+      --md-sys-elevation-0-shadow: none;
+
       /* Tokens listed in docs but not provided with theme builder and extracted from Material Documentation */
       /* https://m3.material.io/foundations/interaction/states/state-layers#bf9b84b2-690c-44b2-8429-8c42dc012d43 (there is a list for the states) */
       --md-sys-state-hover-state-layer-opacity: 8%;
