@@ -99,6 +99,7 @@ export abstract class DimButton extends LitElement {
       }
 
       &:enabled {
+        border: var(--_border, none);
         background-color: var(--_background-color);
         color: var(--_color);
         box-shadow: var(--_shadow-default);
@@ -119,6 +120,7 @@ export abstract class DimButton extends LitElement {
             var(--_color) var(--md-sys-state-focus-state-layer-opacity),
             var(--_background-color)
           );
+          border: var(--_border-focused, --_border, none);
         }
 
         &:active {
@@ -131,17 +133,17 @@ export abstract class DimButton extends LitElement {
       }
 
       &:disabled {
-        background-color: color-mix(
-          in srgb,
-          var(--md-sys-color-on-surface) 12%,
-          transparent
+        background-color: var(
+          --_background-color-disabled,
+          color-mix(in srgb, var(--md-sys-color-on-surface) 12%, transparent)
         );
         color: color-mix(
           in srgb,
           var(--md-sys-color-on-surface) 38%,
           transparent
         );
-        box-shadow: var(--md-sys-elevation-0-shadow);
+        box-shadow: var(--_shadow-disabled, --md-sys-elevation-0-shadow);
+        border: var(--_border-disabled, none);
       }
     }
   ` as CSSResultGroup;
