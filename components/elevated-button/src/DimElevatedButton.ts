@@ -96,6 +96,7 @@ export class DimElevatedButton extends LitElement {
         background-color: var(--md-sys-color-surface-container-low);
         box-shadow: var(--md-sys-elevation-1-shadow);
         color: var(--md-sys-color-primary);
+        cursor: pointer;
 
         &:hover {
           background-color: color-mix(
