@@ -1,7 +1,7 @@
-import { LitElement, css, html } from 'lit';
+import { CSSResultGroup, LitElement, css, html } from 'lit';
 import { property } from 'lit/decorators.js';
 
-export class DimElevatedButton extends LitElement {
+export abstract class DimButton extends LitElement {
   @property({ type: Boolean })
   disabled: boolean = false;
 
@@ -44,6 +44,12 @@ export class DimElevatedButton extends LitElement {
       --md-sys-state-focus-state-layer-opacity: 12%;
       --md-sys-state-pressed-state-layer-opacity: 12%;
       --md-sys-state-drag-state-layer-opacity: 16%;
+
+      display: inline-block;
+      /* box-sizing: border-box;
+      min-height: 48px;
+      min-width: 48px;
+      padding-block: 4px; */
     }
 
     @media (prefers-color-scheme: light) {
@@ -93,39 +99,34 @@ export class DimElevatedButton extends LitElement {
       }
 
       &:enabled {
-        background-color: var(--md-sys-color-surface-container-low);
-        box-shadow: var(--md-sys-elevation-1-shadow);
-        color: var(--md-sys-color-primary);
+        background-color: var(--_background-color);
+        color: var(--_color);
+        box-shadow: var(--_shadow-default);
         cursor: pointer;
 
         &:hover {
           background-color: color-mix(
             in srgb,
-            var(--md-sys-color-primary)
-              var(--md-sys-state-hover-state-layer-opacity),
-            transparent
+            var(--_color) var(--md-sys-state-hover-state-layer-opacity),
+            var(--_background-color)
           );
-          box-shadow: var(--md-sys-elevation-2-shadow);
+          box-shadow: var(--_shadow-elevated);
         }
 
         &:focus {
           background-color: color-mix(
             in srgb,
-            var(--md-sys-color-primary)
-              var(--md-sys-state-focus-state-layer-opacity),
-            transparent
+            var(--_color) var(--md-sys-state-focus-state-layer-opacity),
+            var(--_background-color)
           );
-          box-shadow: var(--md-sys-elevation-1-shadow);
         }
 
         &:active {
           background-color: color-mix(
             in srgb,
-            var(--md-sys-color-primary)
-              var(--md-sys-state-pressed-state-layer-opacity),
-            transparent
+            var(--_color) var(--md-sys-state-pressed-state-layer-opacity),
+            var(--_background-color)
           );
-          box-shadow: var(--md-sys-elevation-1-shadow);
         }
       }
 
@@ -143,11 +144,11 @@ export class DimElevatedButton extends LitElement {
         box-shadow: var(--md-sys-elevation-0-shadow);
       }
     }
-  `;
+  ` as CSSResultGroup;
 }
 
 declare global {
   interface HTMLElementTagNameMap {
-    'dim-elevated-button': DimElevatedButton;
+    'dim-elevated-button': DimButton;
   }
 }

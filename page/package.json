@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "@claas.dev/dim-outlined-input": "*",
-    "@claas.dev/dim-elevated-button": "*"
+    "@claas.dev/dim-elevated-button": "*",
+    "@claas.dev/dim-filled-button": "*"
   },
   "devDependencies": {
     "typescript": "^5.0.2",
