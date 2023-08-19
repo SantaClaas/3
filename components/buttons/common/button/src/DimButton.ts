@@ -73,7 +73,7 @@ export abstract class DimButton extends LitElement {
     }
 
     button {
-      border: none;
+      outline: none;
       font-family: var(--md-sys-typescale-label-large-font-family-name);
       line-height: var(--md-sys-typescale-label-large-line-height);
       font-size: var(--md-sys-typescale-label-large-font-size);
