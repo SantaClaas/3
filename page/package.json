@@ -13,7 +13,8 @@
     "@claas.dev/dim-elevated-button": "*",
     "@claas.dev/dim-filled-button": "*",
     "@claas.dev/dim-filled-tonal-button": "*",
-    "@claas.dev/dim-outlined-button": "*"
+    "@claas.dev/dim-outlined-button": "*",
+    "@claas.dev/dim-text-button": "*"
   },
   "devDependencies": {
     "typescript": "^5.0.2",

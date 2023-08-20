@@ -1,29 +1,24 @@
 import { DimButton } from '@claas.dev/dim-button';
 import { css } from 'lit';
 
-export class DimOutlinedButton extends DimButton {
+export class DimTextButton extends DimButton {
   static styles = [
     // Only configure styles that are different between buttons
     css`
       button {
+        --_padding-inline: 12px;
+        --_padding-inline-icon: 12px 16px;
+
         &:enabled {
           --_color: var(--md-sys-color-primary);
           --_background-color: transparent;
 
-          --_shadow-default: none;
+          --_shadow-default: var(--md-sys-elevation-0-shadow);
           --_shadow-elevated: none;
-
-          --_border: 1px solid var(--md-sys-color-outline);
-          --_border-focused: 1px solid var(--md-sys-color-primary);
         }
 
         &:disabled {
           --_background-color-disabled: transparent;
-
-          --_shadow-disabled: none;
-
-          --_border-disabled: 1px solid
-            color-mix(in srgb, var(--md-sys-color-on-surface) 12%, transparent);
         }
       }
     `,
@@ -33,6 +28,6 @@ export class DimOutlinedButton extends DimButton {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'dim-outlined-button': DimOutlinedButton;
+    'dim-text-button': DimTextButton;
   }
 }

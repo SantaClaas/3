@@ -3,7 +3,7 @@ import { DimButton } from '@claas.dev/dim-button';
 
 export class DimElevatedButton extends DimButton {
   static styles = [
-    // Only configure styles that differentiate between buttons
+    // Only configure styles that are different between buttons
     css`
       button:enabled {
         --_color: var(--md-sys-color-primary);

@@ -3,7 +3,7 @@ import { css } from 'lit';
 
 export class DimFilledTonalButton extends DimButton {
   static styles = [
-    // Only configure styles that differentiate between buttons
+    // Only configure styles that are different between buttons
     css`
       button:enabled {
         --_color: var(--md-sys-color-on-secondary-container);
