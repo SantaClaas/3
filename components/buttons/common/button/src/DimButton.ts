@@ -119,6 +119,7 @@ export abstract class DimButton extends LitElement {
       background-color: transparent;
       padding: 0;
       border: none;
+      -webkit-tap-highlight-color: transparent;
 
       font-family: var(--md-sys-typescale-label-large-font-family-name);
       line-height: var(--md-sys-typescale-label-large-line-height);
