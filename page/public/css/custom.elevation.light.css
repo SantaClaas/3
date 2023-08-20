@@ -1,0 +1,7 @@
+:root {
+  --md-sys-elevation-1-shadow: var(--md-sys-elevation-light-1-shadow);
+  --md-sys-elevation-2-shadow: var(--md-sys-elevation-light-2-shadow);
+  --md-sys-elevation-3-shadow: var(--md-sys-elevation-light-3-shadow);
+  --md-sys-elevation-4-shadow: var(--md-sys-elevation-light-4-shadow);
+  --md-sys-elevation-5-shadow: var(--md-sys-elevation-light-5-shadow);
+}

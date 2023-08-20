@@ -39,63 +39,7 @@ export abstract class DimButton extends LitElement {
 
   static styles = css`
     :host {
-      /* Tokens listed in docs but not provided with theme builder and extracted from Material Figma community kit */
-      /* Use --md-sys-color-shadow maybe? */
-      --md-sys-elevation-light-1-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15),
-        0px 1px 2px 0px rgba(0, 0, 0, 0.3);
-      --md-sys-elevation-light-2-shadow: 0px 2px 6px 2px rgba(0, 0, 0, 0.15),
-        0px 1px 2px 0px rgba(0, 0, 0, 0.3);
-      --md-sys-elevation-light-3-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.3),
-        0px 4px 8px 3px rgba(0, 0, 0, 0.15);
-      --md-sys-elevation-light-4-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.3),
-        0px 6px 10px 4px rgba(0, 0, 0, 0.15);
-      --md-sys-elevation-light-5-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.3),
-        0px 8px 12px 6px rgba(0, 0, 0, 0.15);
-
-      --md-sys-elevation-dark-1-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.3),
-        0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      --md-sys-elevation-dark-2-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.3),
-        0px 2px 6px 2px rgba(0, 0, 0, 0.15);
-      --md-sys-elevation-dark-3-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.3),
-        0px 4px 8px 3px rgba(0, 0, 0, 0.15);
-      --md-sys-elevation-dark-4-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.3),
-        0px 6px 10px 4px rgba(0, 0, 0, 0.15);
-      --md-sys-elevation-dark-5-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.3),
-        0px 8px 12px 6px rgba(0, 0, 0, 0.15);
-
-      --md-sys-elevation-0-shadow: none;
-
-      /* Tokens listed in docs but not provided with theme builder and extracted from Material Documentation */
-      /* https://m3.material.io/foundations/interaction/states/state-layers#bf9b84b2-690c-44b2-8429-8c42dc012d43 (there is a list for the states) */
-      --md-sys-state-hover-state-layer-opacity: 8%;
-      --md-sys-state-focus-state-layer-opacity: 12%;
-      --md-sys-state-pressed-state-layer-opacity: 12%;
-      --md-sys-state-drag-state-layer-opacity: 16%;
-
       display: inline-block;
-      /* box-sizing: border-box;
-      min-height: 48px;
-      padding-block: 4px; */
-    }
-
-    @media (prefers-color-scheme: light) {
-      :host {
-        --md-sys-elevation-1-shadow: var(--md-sys-elevation-light-1-shadow);
-        --md-sys-elevation-2-shadow: var(--md-sys-elevation-light-2-shadow);
-        --md-sys-elevation-3-shadow: var(--md-sys-elevation-light-3-shadow);
-        --md-sys-elevation-4-shadow: var(--md-sys-elevation-light-4-shadow);
-        --md-sys-elevation-5-shadow: var(--md-sys-elevation-light-5-shadow);
-      }
-    }
-
-    @media (prefers-color-scheme: dark) {
-      :host {
-        --md-sys-elevation-1-shadow: var(--md-sys-elevation-dark-1-shadow);
-        --md-sys-elevation-2-shadow: var(--md-sys-elevation-dark-2-shadow);
-        --md-sys-elevation-3-shadow: var(--md-sys-elevation-dark-3-shadow);
-        --md-sys-elevation-4-shadow: var(--md-sys-elevation-dark-4-shadow);
-        --md-sys-elevation-5-shadow: var(--md-sys-elevation-dark-5-shadow);
-      }
     }
 
     /* Make touch target at least 48dp.
