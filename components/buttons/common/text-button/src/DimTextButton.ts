@@ -7,6 +7,7 @@ export class DimTextButton extends DimButton {
     css`
       button {
         --_padding-inline: 12px;
+        /* Padding inline end when there is an icon slotted */
         --_padding-inline-icon: 12px 16px;
 
         &:enabled {

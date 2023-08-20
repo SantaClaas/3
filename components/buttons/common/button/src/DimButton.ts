@@ -26,12 +26,14 @@ export abstract class DimButton extends LitElement {
 
   render() {
     return html`<button ?disabled=${this.disabled}>
-      <slot
-        name="icon"
-        ?slotted=${this._isIconSlotted}
-        @slotchange=${this.#slotChanged}
-      ></slot>
-      <slot @slotchange=${this.#slotChanged}></slot>
+      <div>
+        <slot
+          name="icon"
+          ?slotted=${this._isIconSlotted}
+          @slotchange=${this.#slotChanged}
+        ></slot>
+        <slot @slotchange=${this.#slotChanged}></slot>
+      </div>
     </button>`;
   }
 
@@ -96,8 +98,28 @@ export abstract class DimButton extends LitElement {
       }
     }
 
+    /* Make touch target at least 48dp.
+       Default otherwise at least 44dp.
+       https://m3.material.io/foundations/accessible-design/accessibility-basics#28032e45-c598-450c-b355-f9fe737b1cd8
+    */
+    button {
+      min-block-size: 44px;
+      min-inline-size: 44px;
+    }
+
+    @media (any-pointer: coarse) {
+      button {
+        min-block-size: 48px;
+        min-inline-size: 48px;
+      }
+    }
+
     button {
       outline: none;
+      background-color: transparent;
+      padding: 0;
+      border: none;
+
       font-family: var(--md-sys-typescale-label-large-font-family-name);
       line-height: var(--md-sys-typescale-label-large-line-height);
       font-size: var(--md-sys-typescale-label-large-font-size);
@@ -105,35 +127,45 @@ export abstract class DimButton extends LitElement {
       letter-spacing: var(--md-sys-typescale-label-large-letter-spacing);
       font-weight: var(--md-sys-typescale-label-large-font-weight);
 
-      padding-inline: var(--_padding-inline, 24px);
-      padding-block: 10px;
-      height: 40px;
-      min-width: 48px;
-      border-radius: 20px;
-      text-align: center;
-      /* Have to use display flex to remove funky space between inline elements. As of 2023 there is no other viable solution */
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      cursor: default;
 
-      &:has(slot[name='icon'][slotted]) {
-        padding-inline: var(--_padding-inline-icon, 16px 24px);
-      }
+      & div {
+        text-align: center;
+        /* Have to use display flex to remove funky space between inline elements. As of 2023 there is no other viable solution */
+        display: flex;
+        align-items: center;
+        gap: 8px;
 
-      & [name='icon']::slotted(*) {
-        display: inline-block;
-        height: 18px;
-        width: 18px;
+        height: 20px;
+        padding-block: 10px;
+        padding-inline: 24px;
+        &:has(slot[name='icon'][slotted]) {
+          padding-inline: var(--_padding-inline-icon, 16px 24px);
+        }
+
+        background-color: var(--_background-color);
+        color: var(--_color);
+
+        box-shadow: var(--_shadow--default);
+
+        border-radius: 20px;
+        border: var(--_border, none);
+
+        & slot {
+          &[name='icon'] {
+            &::slotted(*) {
+              display: inline-block;
+              height: 18px;
+              width: 18px;
+            }
+          }
+        }
       }
 
       &:enabled {
-        border: var(--_border, none);
-        background-color: var(--_background-color);
-        color: var(--_color);
-        box-shadow: var(--_shadow-default);
         cursor: pointer;
 
-        &:hover {
+        &:hover div {
           background-color: color-mix(
             in srgb,
             var(--_color) var(--md-sys-state-hover-state-layer-opacity),
@@ -142,7 +174,7 @@ export abstract class DimButton extends LitElement {
           box-shadow: var(--_shadow-elevated);
         }
 
-        &:focus {
+        &:focus div {
           background-color: color-mix(
             in srgb,
             var(--_color) var(--md-sys-state-focus-state-layer-opacity),
@@ -151,7 +183,7 @@ export abstract class DimButton extends LitElement {
           border: var(--_border-focused, --_border, none);
         }
 
-        &:active {
+        &:active div {
           background-color: color-mix(
             in srgb,
             var(--_color) var(--md-sys-state-pressed-state-layer-opacity),
@@ -160,7 +192,7 @@ export abstract class DimButton extends LitElement {
         }
       }
 
-      &:disabled {
+      &:disabled div {
         background-color: var(
           --_background-color-disabled,
           color-mix(in srgb, var(--md-sys-color-on-surface) 12%, transparent)
