@@ -1,14 +1,37 @@
 import { CSSResultGroup, LitElement, css, html } from 'lit';
-import { property } from 'lit/decorators.js';
+import { property, state } from 'lit/decorators.js';
 
 export abstract class DimButton extends LitElement {
   @property({ type: Boolean })
   disabled: boolean = false;
 
+  /**
+   * We track if the icon is slotted to apply different styles based on that.
+   * This is a workaround for not having a :hasSlotted() CSS selector yet.
+   * (":has(::slotted(*))" does not work or causes weird behavior)
+   * Track https://github.com/WICG/webcomponents/issues/936 for updates.
+   */
+  @state()
+  private _isIconSlotted = false;
+
+  #slotChanged(event: Event): void {
+    if (
+      !(event.target instanceof HTMLSlotElement) ||
+      event.target.name !== 'icon'
+    )
+      return;
+
+    this._isIconSlotted = event.target.assignedElements().length > 0;
+  }
+
   render() {
     return html`<button ?disabled=${this.disabled}>
-      <slot name="icon"></slot>
-      <slot></slot>
+      <slot
+        name="icon"
+        ?slotted=${this._isIconSlotted}
+        @slotchange=${this.#slotChanged}
+      ></slot>
+      <slot @slotchange=${this.#slotChanged}></slot>
     </button>`;
   }
 
@@ -50,7 +73,6 @@ export abstract class DimButton extends LitElement {
       display: inline-block;
       /* box-sizing: border-box;
       min-height: 48px;
-      min-width: 48px;
       padding-block: 4px; */
     }
 
@@ -83,9 +105,10 @@ export abstract class DimButton extends LitElement {
       letter-spacing: var(--md-sys-typescale-label-large-letter-spacing);
       font-weight: var(--md-sys-typescale-label-large-font-weight);
 
-      padding-inline: 24px;
+      padding-inline: var(--_padding-inline, 24px);
       padding-block: 10px;
       height: 40px;
+      min-width: 48px;
       border-radius: 20px;
       text-align: center;
       /* Have to use display flex to remove funky space between inline elements. As of 2023 there is no other viable solution */
@@ -93,11 +116,14 @@ export abstract class DimButton extends LitElement {
       align-items: center;
       gap: 8px;
 
+      &:has(slot[name='icon'][slotted]) {
+        padding-inline: var(--_padding-inline-icon, 16px 24px);
+      }
+
       & [name='icon']::slotted(*) {
         display: inline-block;
         height: 18px;
         width: 18px;
-        margin-inline-start: -8px;
       }
 
       &:enabled {
