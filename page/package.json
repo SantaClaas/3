@@ -15,7 +15,8 @@
     "@claas.dev/dim-filled-tonal-button": "*",
     "@claas.dev/dim-outlined-button": "*",
     "@claas.dev/dim-text-button": "*",
-    "@claas.dev/dim-floating-action-button": "*"
+    "@claas.dev/dim-floating-action-button": "*",
+    "@claas.dev/dim-navigation-drawer": "*"
   },
   "devDependencies": {
     "typescript": "^5.0.2",
