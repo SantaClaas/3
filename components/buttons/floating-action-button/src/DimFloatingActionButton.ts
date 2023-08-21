@@ -5,6 +5,8 @@ export class DimFloatingActionButton extends LitElement {
     // Only configure styles that are different between buttons
     css`
       button:enabled {
+        -webkit-tap-highlight-color: transparent;
+
         --_background-color: var(--md-sys-color-primary-container);
         --_color: var(--md-sys-color-on-primary-container);
         all: unset;
