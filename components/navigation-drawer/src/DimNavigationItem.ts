@@ -1,4 +1,4 @@
-import { LitElement, css, html } from 'lit';
+import { LitElement, css, html, nothing } from 'lit';
 import { property } from 'lit/decorators.js';
 import { consume } from '@lit-labs/context';
 import { dimNavigationHostContext } from './DimNavigationHostContext.js';
@@ -124,7 +124,7 @@ export class DimNavigationItem extends LitElement {
       }
 
       /* Label */
-      & slot:not([name])::slotted(*) {
+      & span:first-of-type {
         flex: 1 0 0;
       }
     }
@@ -153,8 +153,14 @@ export class DimNavigationItem extends LitElement {
   @property({ type: Boolean })
   isActive: boolean = false;
 
+  @property({ type: String })
+  label = '';
+
+  @property({ type: String })
+  badge?: string;
+
   @consume({ context: dimNavigationHostContext })
-  navigationHost?: DimNavigationDrawer;
+  private navigationHost?: DimNavigationDrawer;
 
   connectedCallback(): void {
     super.connectedCallback();
@@ -189,9 +195,8 @@ export class DimNavigationItem extends LitElement {
         <a href=${this.#hrefAttribute} ?active=${this.isActive}>
           <slot name="icon-outlined"></slot>
           <slot name="icon-filled"></slot>
-
-          <slot></slot>
-          <slot name="badge"></slot>
+          <span>${this.label}</span>
+          ${this.badge ? html`<span>${this.badge}</span>` : nothing}
         </a>
       </li>
     `;
