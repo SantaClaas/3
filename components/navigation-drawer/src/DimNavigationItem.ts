@@ -1,6 +1,9 @@
 import { LitElement, css, html } from 'lit';
 import { ref, Ref, createRef } from 'lit/directives/ref.js';
 import { property } from 'lit/decorators.js';
+import { consume } from '@lit-labs/context';
+import { dimNavigationHostContext } from './DimNavigationHostContext.js';
+import { DimNavigationDrawer } from './DimNavigationDrawer.js';
 
 export class DimNavigationItem extends LitElement {
   static styles = css`
@@ -148,6 +151,34 @@ export class DimNavigationItem extends LitElement {
   /** @internal */
   @property({ type: Boolean })
   isActive: boolean = false;
+
+  @consume({ context: dimNavigationHostContext })
+  navigationHost?: DimNavigationDrawer;
+
+  protected firstUpdated(): void {
+    /**
+     * Known cases when this can happen:
+     * - Users place navigation item outside of navigatio host like navigation drawer
+     * - This navigatiom items "firstUpdate" was called before the context was initialized, this should not happen but
+     *   can't be guaranteed at development time
+     *
+     * In any of these cases erroring would be bad as web component should work by default. A warning in dev mode could
+     * be considered as appropriate
+     */
+    if (!this.navigationHost) return;
+
+    // Can not run on connected callback as we need the anchor to be rendered to get the full path href
+    this.navigationHost.register(this);
+  }
+
+  disconnectedCallback(): void {
+    super.disconnectedCallback();
+
+    // See notes in connectedCallback above
+    if (!this.navigationHost) return;
+
+    this.navigationHost.unregister(this);
+  }
 
   protected render() {
     return html`

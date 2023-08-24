@@ -25,8 +25,8 @@
     "format": "eslint --ext .ts,.html . --fix --ignore-path .gitignore && prettier \"**/*.ts\" --write --ignore-path .gitignore"
   },
   "dependencies": {
-    "lit": "^2.0.2",
-    "@claas.dev/dim-button": "*"
+    "@lit-labs/context": "^0.4.0",
+    "lit": "^2.0.2"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.4.17",

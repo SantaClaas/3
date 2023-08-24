@@ -1,5 +1,4 @@
 import { LitElement, css, html } from 'lit';
-import { DimNavigationItem } from './DimNavigationItem.js';
 /**
  * The optional headline can be configured through a slot to allow users to define the appropriate semantic headline level (h1-h6)
  */
@@ -28,33 +27,13 @@ export class DimNavigationSection extends LitElement {
     }
   `;
 
-  static #slotChanged(event: Event): void {
-    if (!(event.target instanceof HTMLSlotElement)) return;
-
-    const assignedElements = event.target.assignedElements();
-
-    // This approach does not account for dynamic updates to href
-    for (let index = 0; index < assignedElements.length; index++) {
-      const element = assignedElements[index];
-
-      if (
-        !(element instanceof DimNavigationItem) ||
-        element.href !== window.location.href
-      )
-        continue;
-
-      element.isActive = true;
-      break;
-      // Only the first item is marked as active as multiple items being active is unwanted behavior
-    }
-  }
-
   protected render() {
     return html`
       <section>
+        <!-- Optional headline (would use h1-h6 but that should be a user decision with slots) -->
         <slot name="headline"></slot>
         <ol>
-          <slot @slotchange=${DimNavigationSection.#slotChanged}></slot>
+          <slot></slot>
         </ol>
       </section>
     `;
