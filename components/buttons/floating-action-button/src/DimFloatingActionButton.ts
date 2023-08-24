@@ -25,7 +25,7 @@ export class DimFloatingActionButton extends LitElement {
         cursor: pointer;
         ::slotted(*) {
           height: 24px;
-          aspect-ratio: 1;
+          width: 24px;
         }
 
         &:hover {
