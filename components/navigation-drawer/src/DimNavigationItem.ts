@@ -1,5 +1,4 @@
 import { LitElement, css, html } from 'lit';
-import { ref, Ref, createRef } from 'lit/directives/ref.js';
 import { property } from 'lit/decorators.js';
 import { consume } from '@lit-labs/context';
 import { dimNavigationHostContext } from './DimNavigationHostContext.js';
@@ -133,19 +132,21 @@ export class DimNavigationItem extends LitElement {
 
   #hrefAttribute: string = '';
 
-  #anchorReference: Ref<HTMLAnchorElement> = createRef();
+  #hrefAbsolute: string = '';
 
   set href(value: string) {
     const oldValue = this.#hrefAttribute;
 
     this.#hrefAttribute = value;
+    this.#hrefAbsolute = new URL(value, document.baseURI).href;
+
     this.requestUpdate('href', oldValue);
   }
 
   @property()
   get href() {
     // This approach allows us to mirror the behavior of the anchor tag which converts relative href to absolute
-    return this.#anchorReference.value?.href ?? '';
+    return this.#hrefAbsolute;
   }
 
   /** @internal */
@@ -155,7 +156,9 @@ export class DimNavigationItem extends LitElement {
   @consume({ context: dimNavigationHostContext })
   navigationHost?: DimNavigationDrawer;
 
-  protected firstUpdated(): void {
+  connectedCallback(): void {
+    super.connectedCallback();
+
     /**
      * Known cases when this can happen:
      * - Users place navigation item outside of navigatio host like navigation drawer
@@ -183,11 +186,7 @@ export class DimNavigationItem extends LitElement {
   protected render() {
     return html`
       <li>
-        <a
-          href=${this.#hrefAttribute}
-          ?active=${this.isActive}
-          ${ref(this.#anchorReference)}
-        >
+        <a href=${this.#hrefAttribute} ?active=${this.isActive}>
           <slot name="icon-outlined"></slot>
           <slot name="icon-filled"></slot>
 
