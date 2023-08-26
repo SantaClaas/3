@@ -3,6 +3,7 @@ These tokens might not follow naming guidelines */
 :root {
   --md-sys-elevation-0-shadow: none;
 
+  /* Elevation */
   /* light */
   /* Use --md-sys-color-shadow for shadow color maybe? */
   --md-sys-elevation-light-1-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15),
@@ -27,6 +28,15 @@ These tokens might not follow naming guidelines */
   --md-sys-elevation-dark-5-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.3),
     0px 8px 12px 6px rgba(0, 0, 0, 0.15);
 
+  /* https://m3.material.io/styles/elevation/tokens */
+  --md-sys-elevation-level-0-z-index: 0;
+  --md-sys-elevation-level-1-z-index: 1;
+  --md-sys-elevation-level-2-z-index: 3;
+  --md-sys-elevation-level-3-z-index: 6;
+  --md-sys-elevation-level-4-z-index: 8;
+  --md-sys-elevation-level-5-z-index: 12;
+
+  /* States */
   /* https://m3.material.io/foundations/interaction/states/state-layers#bf9b84b2-690c-44b2-8429-8c42dc012d43 (there is a list for the states) */
   --md-sys-state-hover-state-layer-opacity: 8%;
   --md-sys-state-focus-state-layer-opacity: 12%;

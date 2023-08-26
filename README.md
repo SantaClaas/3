@@ -9,3 +9,8 @@ A web component library for me to reuse components I otherwise often duplicate i
 # TODO
 
 -[ ] Set defaults for not provided CSS Variables to achieve components looking acceptable without configuration
+
+# Interesting Reads
+
+- [Pros and cons of using Shadow DOM and style encapsulation](https://www.matuzo.at/blog/2023/pros-and-cons-of-shadow-dom/)
+- [Container Queries in Web Components](https://mxb.dev/blog/container-queries-web-components/)

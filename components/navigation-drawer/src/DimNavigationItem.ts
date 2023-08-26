@@ -6,126 +6,278 @@ import { DimNavigationDrawer } from './DimNavigationDrawer.js';
 
 export class DimNavigationItem extends LitElement {
   static styles = css`
+    :host {
+      display: block;
+      container-type: inline-size;
+
+      /* width: 70px; */
+      width: 100%;
+      height: 56px;
+      box-sizing: border-box;
+    }
+
     li a {
       all: unset;
 
-      vertical-align: middle;
-      box-sizing: border-box;
+      /* The rail */
+      font-family: var(--md-sys-typescale-label-medium-font-family-name);
+      line-height: var(--md-sys-typescale-label-medium-line-height);
+      font-size: var(--md-sys-typescale-label-medium-font-size);
+      font-style: var(--md-sys-typescale-label-medium-font-family-style);
+      letter-spacing: var(--md-sys-typescale-label-medium-letter-spacing);
+      font-weight: var(--md-sys-typescale-label-medium-font-weight);
+
       display: flex;
-      /* width 336 = 16 left padding + 296 w + 24 right padding */
-      padding-inline: 16px 24px;
-      padding-block: 16px;
-      align-items: center;
+      flex-direction: column;
+      gap: 4px;
+      padding: 12px 0 16px 0;
 
-      gap: 12px;
-
-      /* Inactive */
-      font-family: var(--md-sys-typescale-label-large-font-family-name);
-      line-height: var(--md-sys-typescale-label-large-line-height);
-      font-size: var(--md-sys-typescale-label-large-font-size);
-      font-style: var(--md-sys-typescale-label-large-font-family-style);
-      letter-spacing: var(--md-sys-typescale-label-large-letter-spacing);
-      font-weight: var(--md-sys-typescale-label-large-font-weight);
-
-      border-radius: var(--md-sys-shape-corner-extra-large);
+      height: 100%;
 
       cursor: pointer;
+      /* width: 56px; */
 
-      /* Inactive hover */
-      &:hover {
-        background-color: color-mix(
-          in srgb,
-          var(--md-sys-color-on-surface)
-            var(--md-sys-state-hover-state-layer-opacity),
-          var(--_background-color)
-        );
+      align-items: center;
 
-        color: var(--md-sys-color-on-surface);
-      }
+      & slot[name^='icon-'] {
+        display: grid;
+        justify-content: center;
+        align-content: center;
+        width: 64;
+        height: 32px;
+        padding: 4px 20px;
+        box-sizing: border-box;
 
-      &:focus {
-        background-color: color-mix(
-          in srgb,
-          var(--md-sys-color-on-surface)
-            var(--md-sys-state-focus-state-layer-opacity),
-          var(--_background-color)
-        );
-        color: var(--md-sys-color-on-surface);
-      }
+        border-radius: var(--md-sys-shape-corner-large);
 
-      &:active {
-        background-color: color-mix(
-          in srgb,
-          var(--md-sys-color-on-secondary-container)
-            var(--md-sys-state-pressed-state-layer-opacity),
-          var(--_background-color)
-        );
-        color: var(--md-sys-color-on-surface);
-      }
-
-      /* Use outlined icon when inactive */
-
-      &:not([active]) slot[name='icon-filled']::slotted(*) {
-        display: none;
-      }
-
-      /* Active destination */
-      &[active] {
-        /* Active indicator is the link in our case so we change its background color */
-        --_background-color: var(--md-sys-color-secondary-container);
-        --_color: var(--md-sys-color-on-secondary-container);
+        /* On the rail only the the area around the icon has a different color */
+        --_background-color: var(--md-sys-color-surface);
         background-color: var(--_background-color);
+        /* Text & icon color */
+        --_color: var(--md-sys-color-on-surface-variant);
         color: var(--_color);
 
-        /* Active hover */
+        /* Inactive hover */
         &:hover {
           background-color: color-mix(
             in srgb,
-            var(--md-sys-color-on-secondary-container)
+            var(--md-sys-color-on-surface-variant)
               var(--md-sys-state-hover-state-layer-opacity),
             var(--_background-color)
           );
 
-          color: var(--md-sys-on-secondary-container);
+          color: var(--md-sys-color-on-surface-variant);
         }
 
         &:focus {
           background-color: color-mix(
             in srgb,
-            var(--md-sys-color-on-secondary-container)
+            var(--md-sys-color-on-surface-variant)
               var(--md-sys-state-focus-state-layer-opacity),
             var(--_background-color)
           );
 
-          color: var(--md-sys-on-secondary-container);
+          color: var(--md-sys-color-on-surface-variant);
+        }
+
+        &:active {
+          background-color: color-mix(
+            in srgb,
+            var(--md-sys-color-on-surface-variant)
+              var(--md-sys-state-pressed-state-layer-opacity),
+            var(--_background-color)
+          );
+          color: var(--md-sys-color-on-surface-variant);
+        }
+      }
+
+      /* Use outlined icon when inactive */
+      &:not([active]) slot[name='icon-filled'] {
+        display: none;
+      }
+
+      /* Icon size is always 24px */
+      & slot[name^='icon-']::slotted(*) {
+        height: 24px;
+        width: 24px;
+      }
+
+      /* Hide badge for now */
+      & span:nth-of-type(2) {
+        display: none;
+      }
+
+      /* States active destination */
+      &[active] {
+        /* Active indicator is the link in our case so we change its background color */
+        & slot[name^='icon-'] {
+          --_background-color: var(--md-sys-color-secondary-container);
+          --_color: var(--md-sys-color-on-surface);
+
+          &::slotted(*) {
+            /* Icon color is different to label text color on active */
+            color: var(--md-sys-color-on-secondary-container);
+          }
+
+          /* Active hover */
+          &:hover {
+            background-color: color-mix(
+              in srgb,
+              var(--md-sys-color-on-surface)
+                var(--md-sys-state-hover-state-layer-opacity),
+              var(--_background-color)
+            );
+
+            color: var(--md-sys-on-surface);
+
+            &::slotted(*) {
+              color: var(--md-sys-color-on-secondary-container);
+            }
+          }
+
+          &:focus {
+            background-color: color-mix(
+              in srgb,
+              var(--md-sys-color-on-secondary-container)
+                var(--md-sys-state-focus-state-layer-opacity),
+              var(--_background-color)
+            );
+
+            color: var(--md-sys-on-secondary-container);
+
+            &::slotted(*) {
+              color: var(--md-sys-color-on-secondary-container);
+            }
+          }
+
+          &:active {
+            background-color: color-mix(
+              in srgb,
+              var(--md-sys-color-on-secondary-container)
+                var(--md-sys-state-focus-state-layer-opacity),
+              var(--_background-color)
+            );
+
+            color: var(--md-sys-on-secondary-container);
+
+            &::slotted(*) {
+              color: var(--md-sys-color-on-secondary-container);
+            }
+          }
+        }
+
+        /* Use filled icon when active */
+        & slot[name='icon-outlined'] {
+          display: none;
+        }
+      }
+
+      /* The size when the drawer is expanded */
+      @container (min-width: 336px) and (min-height: 100dvh) {
+        flex-direction: row;
+        vertical-align: middle;
+        box-sizing: border-box;
+        width: 336px;
+        /* width 336 = 16 left padding + 296 w + 24 right padding */
+        padding-inline: 16px 24px;
+        padding-block: 16px;
+        align-items: center;
+
+        gap: 12px;
+
+        font-family: var(--md-sys-typescale-label-large-font-family-name);
+        line-height: var(--md-sys-typescale-label-large-line-height);
+        font-size: var(--md-sys-typescale-label-large-font-size);
+        font-style: var(--md-sys-typescale-label-large-font-family-style);
+        letter-spacing: var(--md-sys-typescale-label-large-letter-spacing);
+        font-weight: var(--md-sys-typescale-label-large-font-weight);
+
+        border-radius: var(--md-sys-shape-corner-extra-large);
+
+        /* Label */
+        & span:first-of-type {
+          flex: 1 0 0;
+        }
+
+        /* States inactive */
+        &:hover {
+          background-color: color-mix(
+            in srgb,
+            var(--md-sys-color-on-surface)
+              var(--md-sys-state-hover-state-layer-opacity),
+            var(--_background-color)
+          );
+
+          color: var(--md-sys-color-on-surface);
+        }
+
+        &:focus {
+          background-color: color-mix(
+            in srgb,
+            var(--md-sys-color-on-surface)
+              var(--md-sys-state-focus-state-layer-opacity),
+            var(--_background-color)
+          );
+          color: var(--md-sys-color-on-surface);
         }
 
         &:active {
           background-color: color-mix(
             in srgb,
             var(--md-sys-color-on-secondary-container)
-              var(--md-sys-state-focus-state-layer-opacity),
+              var(--md-sys-state-pressed-state-layer-opacity),
             var(--_background-color)
           );
-
-          color: var(--md-sys-on-secondary-container);
+          color: var(--md-sys-color-on-surface);
         }
 
-        /* Use filled icon when active */
-        & slot[name='icon-outlined']::slotted(*) {
-          display: none;
+        /* States active destination */
+        &[active] {
+          /* Active indicator is the link in our case so we change its background color */
+          --_background-color: var(--md-sys-color-secondary-container);
+          --_color: var(--md-sys-color-on-secondary-container);
+          background-color: var(--_background-color);
+          color: var(--_color);
+
+          /* Active hover */
+          &:hover {
+            background-color: color-mix(
+              in srgb,
+              var(--md-sys-color-on-secondary-container)
+                var(--md-sys-state-hover-state-layer-opacity),
+              var(--_background-color)
+            );
+
+            color: var(--md-sys-on-secondary-container);
+          }
+
+          &:focus {
+            background-color: color-mix(
+              in srgb,
+              var(--md-sys-color-on-secondary-container)
+                var(--md-sys-state-focus-state-layer-opacity),
+              var(--_background-color)
+            );
+
+            color: var(--md-sys-on-secondary-container);
+          }
+
+          &:active {
+            background-color: color-mix(
+              in srgb,
+              var(--md-sys-color-on-secondary-container)
+                var(--md-sys-state-focus-state-layer-opacity),
+              var(--_background-color)
+            );
+
+            color: var(--md-sys-on-secondary-container);
+          }
+
+          /* Use filled icon when active */
+          & slot[name='icon-outlined'] {
+            display: none;
+          }
         }
-      }
-
-      /* Icon */
-      & slot[name^='icon-']::slotted(*) {
-        height: 24px;
-        width: 24px;
-      }
-
-      /* Label */
-      & span:first-of-type {
-        flex: 1 0 0;
       }
     }
   `;

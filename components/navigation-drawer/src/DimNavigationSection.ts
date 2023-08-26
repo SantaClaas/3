@@ -4,26 +4,50 @@ import { LitElement, css, html } from 'lit';
  */
 export class DimNavigationSection extends LitElement {
   static styles = css`
-    ol {
-      all: unset;
-      list-style-type: none;
+    :host {
+      display: block;
+
+      container-type: inline-size;
+      height: 80px;
     }
 
+    section {
+      height: 100%;
+      & ol {
+        all: unset;
+
+        height: 100%;
+        list-style-type: none;
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+      }
+    }
+
+    /* Headline */
     slot[name='headline']::slotted(*) {
-      padding-inline: 16px;
-      /* 18dp so we add up to 56 again due to no icon taking additional 2dp */
-      padding-block: 18px;
+      /* Hide headline when not expanded */
+      display: none;
+    }
 
-      margin: 0;
+    @container (min-width: 336px) and (min-height: 100dvh) {
+      slot[name='headline']::slotted(*) {
+        display: block;
+        padding-inline: 16px;
+        /* 18dp so we add up to 56 again due to no icon taking additional 2dp */
+        padding-block: 18px;
 
-      color: var(--_color);
+        margin: 0;
 
-      font-family: var(--md-sys-typescale-title-small-font-family-name);
-      line-height: var(--md-sys-typescale-title-small-line-height);
-      font-size: var(--md-sys-typescale-title-small-font-size);
-      font-style: var(--md-sys-typescale-title-small-font-family-style);
-      letter-spacing: var(--md-sys-typescale-title-small-letter-spacing);
-      font-weight: var(--md-sys-typescale-title-small-font-weight);
+        color: var(--_color);
+
+        font-family: var(--md-sys-typescale-title-small-font-family-name);
+        line-height: var(--md-sys-typescale-title-small-line-height);
+        font-size: var(--md-sys-typescale-title-small-font-size);
+        font-style: var(--md-sys-typescale-title-small-font-family-style);
+        letter-spacing: var(--md-sys-typescale-title-small-letter-spacing);
+        font-weight: var(--md-sys-typescale-title-small-font-weight);
+      }
     }
   `;
 
