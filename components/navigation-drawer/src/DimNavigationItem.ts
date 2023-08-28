@@ -60,8 +60,9 @@ export class DimNavigationItem extends LitElement {
 
       align-items: center;
 
-      @container (min-width: 70px) {
-        padding: 4px 16px;
+      @media (min-width: 600px) {
+        padding: 0;
+        height: 56px;
       }
 
       @container (min-width: 336px) {
@@ -182,6 +183,10 @@ export class DimNavigationItem extends LitElement {
         /* Text & icon color */
         --_color: var(--md-sys-color-on-surface-variant);
         color: var(--_color);
+
+        @media (min-width: 600px) {
+          padding: 4px 16px;
+        }
 
         /* Inactive hover */
         &:hover {
