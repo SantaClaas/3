@@ -11,6 +11,28 @@ export class DimNavigationSection extends LitElement {
       height: 80px;
     }
 
+    /* Media queries nested in :host don't work apparently (in Chrome) */
+    /* Medium */
+    @media (min-width: 600px) and (max-width: 840px) {
+      :host {
+        height: auto;
+      }
+    }
+
+    /* Exapnded */
+    @media (min-width: 840px) and (max-width: 1240px) {
+      :host {
+        height: auto;
+      }
+    }
+
+    /* "Expandeder" special navigation case */
+    @media (min-width: 1240px) {
+      :host {
+        height: auto;
+      }
+    }
+
     section {
       height: 100%;
       & ol {
@@ -24,18 +46,33 @@ export class DimNavigationSection extends LitElement {
       }
     }
 
+    @media (min-width: 600px) {
+      section ol {
+        flex-direction: column;
+        /* gap: 12px; */
+        gap: 4px;
+
+        padding: 5px;
+      }
+    }
+
+    @media (min-width: 1240px) {
+      section ol {
+        padding: 0;
+      }
+    }
+
     /* Headline */
     slot[name='headline']::slotted(*) {
       /* Hide headline when not expanded */
       display: none;
     }
 
-    @container (min-width: 336px) and (min-height: 100dvh) {
+    @media (min-width: 1240px) {
       slot[name='headline']::slotted(*) {
         display: block;
-        padding-inline: 16px;
         /* 18dp so we add up to 56 again due to no icon taking additional 2dp */
-        padding-block: 18px;
+        padding: 18px 16px;
 
         margin: 0;
 

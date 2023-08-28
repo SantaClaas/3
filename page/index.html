@@ -19,14 +19,25 @@
 
     body {
       display: grid;
+      /* Navigation needs to be after content to overlay it but visually appear before it for bar and drawer */
+      grid-template-columns: [navigation-start] auto [navigation-end] 1fr;
+
       margin: 0;
-      grid-template-columns: auto 1fr;
       height: 100dvh;
+    }
+
+    dim-navigation {
+      grid-column: navigation-start / navigation-end;
+    }
+
+    main {
+      grid-column-start: navigation-end;
     }
   </style>
 </head>
 
 <body>
+
 
   <main>
     <h1>Components</h1>
@@ -171,7 +182,7 @@
   </main>
 
 
-  <dim-navigation-drawer>
+  <dim-navigation>
 
     <dim-navigation-section>
       <h2 slot="headline">Mail</h2>
@@ -284,8 +295,7 @@
       </dim-navigation-item>
 
     </dim-navigation-section>
-  </dim-navigation-drawer>
-
+  </dim-navigation>
 </body>
 
 

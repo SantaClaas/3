@@ -10,26 +10,59 @@ import { dimNavigationHostContext } from './DimNavigationHostContext.js';
  * It is recommended to use 3-7 destination items with the navigation
  * Remarks: For the component to properly work it needs to be registered before the navigation due to the context registration requiring the host provider to be initialized
  */
-export class DimNavigationDrawer extends LitElement {
+export class DimNavigation extends LitElement {
   static styles =
     // Only configure styles that are different between buttons
     css`
       :host {
-        /* Compact is default layout */
+        /* Compact is default layout < 600dp -> Navigation Bar */
         display: block;
         container-type: inline-size;
 
         position: fixed;
-        --_inset: auto auto 0 0;
-        inset: var(--_inset);
+        inset: auto auto 0 0;
 
-        --_width: 100dvw;
-        --_height: 80px;
-
-        width: var(--_width);
-        height: var(--_height);
+        /* Bar width */
+        width: 100dvw;
+        height: 80px;
 
         background-color: var(--md-sys-color-surface);
+      }
+
+      /* Media queries nested in :host don't work apparently (in Chrome) */
+      /* Medium */
+      @media (min-width: 600px) and (max-width: 840px) {
+        :host {
+          /* Rail width */
+          width: 80px;
+          height: 100dvh;
+
+          position: sticky;
+          inset: 0 auto 0 0;
+        }
+      }
+
+      /* Exapnded */
+      @media (min-width: 840px) and (max-width: 1240px) {
+        :host {
+          width: 80px;
+          height: 100dvh;
+
+          position: sticky;
+          inset: 0 auto 0 0;
+        }
+      }
+
+      /* "Expandeder" special navigation case */
+      @media (min-width: 1240px) {
+        :host {
+          /* Drawer width */
+          width: 360px;
+          height: 100dvh;
+
+          position: sticky;
+          inset: 0 auto 0 0;
+        }
       }
 
       nav {
@@ -37,32 +70,21 @@ export class DimNavigationDrawer extends LitElement {
         box-sizing: border-box;
         padding: 0 8px;
         z-index: var(--md-sys-elevation-level-2-z-index);
+
         background-color: var(--md-sys-color-surface);
-
-        /* Hide divider when not expanded */
-        & slot::slotted(dim-divider) {
-          display: none;
-          visibility: hidden;
-        }
-
-        /* When width is expanded or modal open */
-        @container (min-width: 360px) and (min-height: 100dvh) {
-          background-color: var(--md-sys-color-surface-container-low);
-          box-shadow: var(--md-sys-elevation-1-shadow);
-        }
 
         /* Medium Layout (rail + modal drawer) */
         @media (min-width: 600px) and (max-width: 840px) {
           /* Color (modal) */
-
           border-radius: none;
+          padding: 44px 0 56px 0;
         }
 
         /* Expanded (rail + modal drawer) */
         @media (min-width: 840px) and (max-width: 1240px) {
-          padding-inline: 12px;
           width: var(--_rail-width);
           border-radius: none;
+          padding: 44px 0 56px 0;
 
           & slot::slotted(dim-divider) {
             display: none;
@@ -73,7 +95,7 @@ export class DimNavigationDrawer extends LitElement {
         @media (min-width: 1240px) {
           width: 360px;
           box-sizing: border-box;
-          padding-inline: 12px;
+          padding: 12px;
 
           /* Color (standard) */
           --_background-color: var(--md-sys-color-surface);
@@ -83,15 +105,30 @@ export class DimNavigationDrawer extends LitElement {
           box-shadow: var(--md-sys-elevation-0-shadow);
           border-radius: var(--md-sys-shape-corner-large-end);
         }
+
+        & slot::slotted(dim-navigation-section:not(:first-of-type)) {
+          display: none;
+        }
+
+        @media (min-width: 1240px) {
+          & slot::slotted(dim-navigation-section:not(:first-of-type)) {
+            display: initial;
+          }
+        }
+
+        /* Hide divider when not expanded */
+        & slot::slotted(dim-divider) {
+          display: none;
+          visibility: hidden;
+        }
+
+        @media (min-width: 1240px) {
+          & slot::slotted(dim-divider) {
+            display: initial;
+            visibility: initial;
+          }
+        }
       }
-
-      /* Medium: 600 < width < 840 */
-
-      /* @media (600px < width < 840px) { */
-
-      /* Expanded: 840 > width */
-      /* @media (width > 840px) { */
-      /* Navigation drawer is visible in expanded layouts and a modal on compact and medium */
     `;
 
   @provide({ context: dimNavigationHostContext })
@@ -143,7 +180,7 @@ export class DimNavigationDrawer extends LitElement {
     this.#items.push(item);
 
     // Find active
-    const activeItem = DimNavigationDrawer.#findActive(this.#items);
+    const activeItem = DimNavigation.#findActive(this.#items);
 
     if (activeItem) this.#setActiveItem(activeItem);
   }
@@ -159,7 +196,7 @@ export class DimNavigationDrawer extends LitElement {
 
     this.#items.slice(index, 1);
 
-    const activeItem = DimNavigationDrawer.#findActive(this.#items);
+    const activeItem = DimNavigation.#findActive(this.#items);
     if (activeItem) this.#setActiveItem(activeItem);
   }
 
@@ -172,6 +209,6 @@ export class DimNavigationDrawer extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'dim-navigation-drawer': DimNavigationDrawer;
+    'dim-navigation': DimNavigation;
   }
 }

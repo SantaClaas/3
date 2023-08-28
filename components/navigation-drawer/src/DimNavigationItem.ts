@@ -2,7 +2,7 @@ import { LitElement, css, html, nothing } from 'lit';
 import { property } from 'lit/decorators.js';
 import { consume } from '@lit-labs/context';
 import { dimNavigationHostContext } from './DimNavigationHostContext.js';
-import { DimNavigationDrawer } from './DimNavigationDrawer.js';
+import { DimNavigation } from './DimNavigation.js';
 
 export class DimNavigationItem extends LitElement {
   static styles = css`
@@ -10,16 +10,36 @@ export class DimNavigationItem extends LitElement {
       display: block;
       container-type: inline-size;
 
-      /* width: 70px; */
       width: 100%;
       height: 56px;
       box-sizing: border-box;
     }
 
+    /* Medium */
+    @media (min-width: 600px) and (max-width: 840px) {
+      :host {
+        /* Rail width */
+        width: 70px;
+      }
+    }
+
+    /* Expanded */
+    @media (min-width: 840px) and (max-width: 1240px) {
+      :host {
+        width: 70px;
+      }
+    }
+
+    /* "Expandeder" */
+    @media (min-width: 1240px) {
+      :host {
+        width: 336px;
+      }
+    }
+
     li a {
       all: unset;
 
-      /* The rail */
       font-family: var(--md-sys-typescale-label-medium-font-family-name);
       line-height: var(--md-sys-typescale-label-medium-line-height);
       font-size: var(--md-sys-typescale-label-medium-font-size);
@@ -35,155 +55,20 @@ export class DimNavigationItem extends LitElement {
       height: 100%;
 
       cursor: pointer;
-      /* width: 56px; */
+
+      box-sizing: border-box;
 
       align-items: center;
 
-      & slot[name^='icon-'] {
-        display: grid;
-        justify-content: center;
-        align-content: center;
-        width: 64;
-        height: 32px;
-        padding: 4px 20px;
-        box-sizing: border-box;
-
-        border-radius: var(--md-sys-shape-corner-large);
-
-        /* On the rail only the the area around the icon has a different color */
-        --_background-color: var(--md-sys-color-surface);
-        background-color: var(--_background-color);
-        /* Text & icon color */
-        --_color: var(--md-sys-color-on-surface-variant);
-        color: var(--_color);
-
-        /* Inactive hover */
-        &:hover {
-          background-color: color-mix(
-            in srgb,
-            var(--md-sys-color-on-surface-variant)
-              var(--md-sys-state-hover-state-layer-opacity),
-            var(--_background-color)
-          );
-
-          color: var(--md-sys-color-on-surface-variant);
-        }
-
-        &:focus {
-          background-color: color-mix(
-            in srgb,
-            var(--md-sys-color-on-surface-variant)
-              var(--md-sys-state-focus-state-layer-opacity),
-            var(--_background-color)
-          );
-
-          color: var(--md-sys-color-on-surface-variant);
-        }
-
-        &:active {
-          background-color: color-mix(
-            in srgb,
-            var(--md-sys-color-on-surface-variant)
-              var(--md-sys-state-pressed-state-layer-opacity),
-            var(--_background-color)
-          );
-          color: var(--md-sys-color-on-surface-variant);
-        }
+      @container (min-width: 70px) {
+        padding: 4px 16px;
       }
 
-      /* Use outlined icon when inactive */
-      &:not([active]) slot[name='icon-filled'] {
-        display: none;
-      }
-
-      /* Icon size is always 24px */
-      & slot[name^='icon-']::slotted(*) {
-        height: 24px;
-        width: 24px;
-      }
-
-      /* Hide badge for now */
-      & span:nth-of-type(2) {
-        display: none;
-      }
-
-      /* States active destination */
-      &[active] {
-        /* Active indicator is the link in our case so we change its background color */
-        & slot[name^='icon-'] {
-          --_background-color: var(--md-sys-color-secondary-container);
-          --_color: var(--md-sys-color-on-surface);
-
-          &::slotted(*) {
-            /* Icon color is different to label text color on active */
-            color: var(--md-sys-color-on-secondary-container);
-          }
-
-          /* Active hover */
-          &:hover {
-            background-color: color-mix(
-              in srgb,
-              var(--md-sys-color-on-surface)
-                var(--md-sys-state-hover-state-layer-opacity),
-              var(--_background-color)
-            );
-
-            color: var(--md-sys-on-surface);
-
-            &::slotted(*) {
-              color: var(--md-sys-color-on-secondary-container);
-            }
-          }
-
-          &:focus {
-            background-color: color-mix(
-              in srgb,
-              var(--md-sys-color-on-secondary-container)
-                var(--md-sys-state-focus-state-layer-opacity),
-              var(--_background-color)
-            );
-
-            color: var(--md-sys-on-secondary-container);
-
-            &::slotted(*) {
-              color: var(--md-sys-color-on-secondary-container);
-            }
-          }
-
-          &:active {
-            background-color: color-mix(
-              in srgb,
-              var(--md-sys-color-on-secondary-container)
-                var(--md-sys-state-focus-state-layer-opacity),
-              var(--_background-color)
-            );
-
-            color: var(--md-sys-on-secondary-container);
-
-            &::slotted(*) {
-              color: var(--md-sys-color-on-secondary-container);
-            }
-          }
-        }
-
-        /* Use filled icon when active */
-        & slot[name='icon-outlined'] {
-          display: none;
-        }
-      }
-
-      /* The size when the drawer is expanded */
-      @container (min-width: 336px) and (min-height: 100dvh) {
+      @container (min-width: 336px) {
         flex-direction: row;
-        vertical-align: middle;
-        box-sizing: border-box;
-        width: 336px;
-        /* width 336 = 16 left padding + 296 w + 24 right padding */
-        padding-inline: 16px 24px;
-        padding-block: 16px;
-        align-items: center;
-
         gap: 12px;
+
+        padding: 16px 24px 16px 16px;
 
         font-family: var(--md-sys-typescale-label-large-font-family-name);
         line-height: var(--md-sys-typescale-label-large-line-height);
@@ -279,6 +164,147 @@ export class DimNavigationItem extends LitElement {
           }
         }
       }
+
+      & slot[name^='icon-'] {
+        display: grid;
+        justify-content: center;
+        align-content: center;
+        width: 64;
+        height: 32px;
+        padding: 4px 20px;
+        box-sizing: border-box;
+
+        border-radius: var(--md-sys-shape-corner-large);
+
+        /* On the rail only the the area around the icon has a different color */
+        --_background-color: var(--md-sys-color-surface);
+        background-color: var(--_background-color);
+        /* Text & icon color */
+        --_color: var(--md-sys-color-on-surface-variant);
+        color: var(--_color);
+
+        /* Inactive hover */
+        &:hover {
+          background-color: color-mix(
+            in srgb,
+            var(--md-sys-color-on-surface-variant)
+              var(--md-sys-state-hover-state-layer-opacity),
+            var(--_background-color)
+          );
+
+          color: var(--md-sys-color-on-surface-variant);
+        }
+
+        &:focus {
+          background-color: color-mix(
+            in srgb,
+            var(--md-sys-color-on-surface-variant)
+              var(--md-sys-state-focus-state-layer-opacity),
+            var(--_background-color)
+          );
+
+          color: var(--md-sys-color-on-surface-variant);
+        }
+
+        &:active {
+          background-color: color-mix(
+            in srgb,
+            var(--md-sys-color-on-surface-variant)
+              var(--md-sys-state-pressed-state-layer-opacity),
+            var(--_background-color)
+          );
+          color: var(--md-sys-color-on-surface-variant);
+        }
+
+        @container (min-width: 336px) {
+          display: contents;
+        }
+      }
+
+      /* Use outlined icon when inactive */
+      &:not([active]) slot[name='icon-filled'] {
+        display: none;
+      }
+
+      /* Icon size is always 24px */
+      & slot[name^='icon-']::slotted(*) {
+        height: 24px;
+        width: 24px;
+      }
+
+      /* Hide badge for now */
+      & span:nth-of-type(2) {
+        display: none;
+
+        @container (min-width: 336px) {
+          display: initial;
+        }
+      }
+
+      /* States active destination */
+      &[active] {
+        /* Active indicator is the link in our case so we change its background color */
+        & slot[name^='icon-'] {
+          --_background-color: var(--md-sys-color-secondary-container);
+          --_color: var(--md-sys-color-on-surface);
+
+          &::slotted(*) {
+            /* Icon color is different to label text color on active */
+            color: var(--md-sys-color-on-secondary-container);
+          }
+
+          /* Active hover */
+          &:hover {
+            background-color: color-mix(
+              in srgb,
+              var(--md-sys-color-on-surface)
+                var(--md-sys-state-hover-state-layer-opacity),
+              var(--_background-color)
+            );
+
+            color: var(--md-sys-on-surface);
+
+            &::slotted(*) {
+              color: var(--md-sys-color-on-secondary-container);
+            }
+          }
+
+          &:focus {
+            background-color: color-mix(
+              in srgb,
+              var(--md-sys-color-on-secondary-container)
+                var(--md-sys-state-focus-state-layer-opacity),
+              var(--_background-color)
+            );
+
+            color: var(--md-sys-on-secondary-container);
+
+            &::slotted(*) {
+              color: var(--md-sys-color-on-secondary-container);
+            }
+          }
+
+          &:active {
+            background-color: color-mix(
+              in srgb,
+              var(--md-sys-color-on-secondary-container)
+                var(--md-sys-state-focus-state-layer-opacity),
+              var(--_background-color)
+            );
+
+            color: var(--md-sys-on-secondary-container);
+
+            &::slotted(*) {
+              color: var(--md-sys-color-on-secondary-container);
+            }
+          }
+        }
+
+        /* Use filled icon when active */
+        & slot[name='icon-outlined'] {
+          display: none;
+        }
+      }
     }
   `;
 
@@ -312,7 +338,7 @@ export class DimNavigationItem extends LitElement {
   badge?: string;
 
   @consume({ context: dimNavigationHostContext })
-  private navigationHost?: DimNavigationDrawer;
+  private navigationHost?: DimNavigation;
 
   connectedCallback(): void {
     super.connectedCallback();

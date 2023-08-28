@@ -1,9 +1,9 @@
 import { createContext } from '@lit-labs/context';
-import type { DimNavigationDrawer } from './DimNavigationDrawer.js';
+import type { DimNavigation } from './DimNavigation.js';
 
-export type { DimNavigationDrawer } from './DimNavigationDrawer.js';
+export type { DimNavigation } from './DimNavigation.js';
 
 export const dimNavigationHostContextKey = 'dim-navigation-host';
-export const dimNavigationHostContext = createContext<DimNavigationDrawer>(
+export const dimNavigationHostContext = createContext<DimNavigation>(
   dimNavigationHostContextKey
 );
