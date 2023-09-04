@@ -1,8 +1,11 @@
-import { LitElement, css, html, nothing } from 'lit';
+import { LitElement, css, html } from 'lit';
 import { property } from 'lit/decorators.js';
 import { consume } from '@lit-labs/context';
 import { dimNavigationHostContext } from './DimNavigationHostContext.js';
 import { DimNavigation } from './DimNavigation.js';
+
+const iconOutlinedName = 'icon-outlined';
+const iconFilledName = 'icon-filled';
 
 export class DimNavigationItem extends LitElement {
   static styles = css`
@@ -237,7 +240,6 @@ export class DimNavigationItem extends LitElement {
         width: 24px;
       }
 
-      /* Hide badge for now */
       & span:nth-of-type(2) {
         display: none;
 
@@ -345,7 +347,8 @@ export class DimNavigationItem extends LitElement {
   @consume({ context: dimNavigationHostContext })
   private navigationHost?: DimNavigation;
 
-  connectedCallback(): void {
+  // connectedCallback(): void {
+  firstUpdated(): void {
     super.connectedCallback();
 
     /**
@@ -372,16 +375,48 @@ export class DimNavigationItem extends LitElement {
     this.navigationHost.unregister(this);
   }
 
+  /**
+   *
+   * @internal
+   */
+  iconOutlined?: Element[];
+
+  /**
+   *
+   * @internal
+   */
+  iconFilled?: Element[];
+
+  #iconOutlinedChanged(event: Event) {
+    if (
+      !(event.target instanceof HTMLSlotElement) ||
+      event.target.name !== iconOutlinedName
+    )
+      return;
+
+    this.iconOutlined = event.target.assignedElements();
+  }
+
+  #iconFilledChanged(event: Event) {
+    if (
+      !(event.target instanceof HTMLSlotElement) ||
+      event.target.name !== iconFilledName
+    )
+      return;
+
+    this.iconFilled = event.target.assignedElements();
+  }
+
   protected render() {
     return html`
-      <li>
-        <a href=${this.#hrefAttribute} ?active=${this.isActive}>
-          <slot name="icon-outlined"></slot>
-          <slot name="icon-filled"></slot>
-          <span>${this.label}</span>
-          ${this.badge ? html`<span>${this.badge}</span>` : nothing}
-        </a>
-      </li>
+      <slot
+        name="${iconOutlinedName}"
+        @slotchange=${this.#iconOutlinedChanged}
+      ></slot>
+      <slot
+        name="${iconFilledName}"
+        @slotchange=${this.#iconFilledChanged}
+      ></slot>
     `;
   }
 }
