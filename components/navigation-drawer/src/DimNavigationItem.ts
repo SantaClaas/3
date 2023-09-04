@@ -356,10 +356,7 @@ export class DimNavigationItem extends LitElement {
   @consume({ context: dimNavigationHostContext })
   private navigationHost?: DimNavigation;
 
-  // connectedCallback(): void {
   firstUpdated(): void {
-    super.connectedCallback();
-
     /**
      * Known cases when this can happen:
      * - Users place navigation item outside of navigatio host like navigation drawer
