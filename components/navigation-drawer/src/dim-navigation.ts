@@ -3,6 +3,7 @@ import { DimDivider } from './DimDivider.js';
 import { DimNavigationSection } from './DimNavigationSection.js';
 import { DimNavigationItem } from './DimNavigationItem.js';
 import { DimNavigationBar } from './DimNavigationBar.js';
+import { DimNavigationRail } from './DimNavigationRail.js';
 
 /**
  * Order of registratiaon matters! A navigation host must be registered before the navigation item.
@@ -10,6 +11,7 @@ import { DimNavigationBar } from './DimNavigationBar.js';
  * initialized the provider listening. In this case the host is the navigation drawer
  */
 window.customElements.define('dim-navigation-bar', DimNavigationBar);
+window.customElements.define('dim-navigation-rail', DimNavigationRail);
 window.customElements.define('dim-navigation', DimNavigation);
 window.customElements.define('dim-navigation-item', DimNavigationItem);
 window.customElements.define('dim-navigation-section', DimNavigationSection);

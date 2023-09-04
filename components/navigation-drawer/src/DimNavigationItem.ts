@@ -173,7 +173,7 @@ export class DimNavigationItem extends LitElement {
         display: grid;
         justify-content: center;
         align-content: center;
-        width: 64;
+        width: 64px;
         height: 32px;
         padding: 4px 20px;
         box-sizing: border-box;

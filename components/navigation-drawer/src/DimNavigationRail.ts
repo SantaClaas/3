@@ -1,11 +1,14 @@
 import { css, html, nothing } from 'lit';
 import NavigationHost from './NavigationHost.js';
 
-export class DimNavigationBar extends NavigationHost {
+export class DimNavigationRail extends NavigationHost {
   static styles = css`
     :host {
-      position: fixed;
-      inset: auto 0 0 0;
+      width: 80px;
+      height: 100dvh;
+
+      position: sticky;
+      inset: 0 auto 0 0;
 
       --_background-color: var(--md-sys-color-surface);
       background-color: var(--_background-color);
@@ -21,22 +24,18 @@ export class DimNavigationBar extends NavigationHost {
 
     nav {
       box-sizing: border-box;
-
-      height: 80px;
-      padding: 0 8px;
+      padding: 44px 0 56px 0;
 
       & ol {
         all: unset;
 
         display: flex;
-        gap: 8px;
-        justify-content: space-between;
+        flex-direction: column;
+        gap: 4px;
 
-        list-style-type: none;
+        padding: 5px;
 
         & li {
-          width: 100%;
-
           & a {
             all: unset;
 
@@ -45,8 +44,7 @@ export class DimNavigationBar extends NavigationHost {
             align-items: center;
             gap: 4px;
 
-            width: 100%;
-            padding: 12px 0 16px 0;
+            height: 56px;
 
             cursor: pointer;
 
@@ -54,7 +52,7 @@ export class DimNavigationBar extends NavigationHost {
             & div {
               height: 24px;
               width: 24px;
-              padding: 4px 20px;
+              padding: 4px 16px;
 
               position: relative;
 
