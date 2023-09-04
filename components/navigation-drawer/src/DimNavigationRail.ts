@@ -1,5 +1,6 @@
 import { css, html, nothing } from 'lit';
 import NavigationHost from './NavigationHost.js';
+import { renderNavigationItem } from './DimNavigationItem.js';
 
 export class DimNavigationRail extends NavigationHost {
   static styles = css`
@@ -49,14 +50,20 @@ export class DimNavigationRail extends NavigationHost {
             cursor: pointer;
 
             /* Icon container */
+
+            /* No label */
             & div {
               height: 24px;
               width: 24px;
-              padding: 4px 16px;
+
+              --_icon-container-padding-y: 16px;
+              --_icon-container-padding-x: 16px;
+              padding: var(--_icon-container-padding-y)
+                var(--_icon-container-padding-x);
 
               position: relative;
 
-              border-radius: var(--md-sys-shape-corner-large);
+              border-radius: 100px;
 
               & svg {
                 height: 24px;
@@ -64,9 +71,10 @@ export class DimNavigationRail extends NavigationHost {
               }
 
               /* Badge */
+              --_badge-position-top: 14px;
               & span {
                 position: absolute;
-                inset: 2px auto auto 50%;
+                inset: var(--_badge-position-top) auto auto 50%;
 
                 display: flex;
                 align-items: center;
@@ -98,6 +106,12 @@ export class DimNavigationRail extends NavigationHost {
                 );
                 font-weight: var(--md-sys-typescale-label-small-font-weight);
               }
+            }
+
+            /* Has label */
+            &:has(> span) div {
+              --_icon-container-padding-y: 4px;
+              --_badge-position-top: 2px;
             }
 
             /* States */
@@ -185,20 +199,7 @@ export class DimNavigationRail extends NavigationHost {
     return html`
       <nav>
         <ol>
-          ${this.items.map(
-            item => html`
-              <li>
-                <a href="${item.href}" ?active=${item.isActive}>
-                  <div>
-                    ${item.isActive ? item.iconFilled : item.iconOutlined}
-                    ${item.badge ? html`<span>${item.badge}</span>` : nothing}
-                  </div>
-
-                  ${item.label}
-                </a>
-              </li>
-            `
-          )}
+          ${this.items.map(renderNavigationItem)}
         </ol>
       </nav>
     `;

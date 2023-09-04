@@ -1,7 +1,13 @@
-import { css, html, nothing } from 'lit';
+import { css, html } from 'lit';
 import NavigationHost from './NavigationHost.js';
+import { renderNavigationItem } from './DimNavigationItem.js';
 
 export class DimNavigationBar extends NavigationHost {
+  /**
+   * Differences to navigation rail:
+   * - It is recommeded to use a label with navigation items.
+   * - If no label is provided, the icon container doesn't change to a fully rounded shape
+   */
   static styles = css`
     :host {
       position: fixed;
@@ -187,20 +193,7 @@ export class DimNavigationBar extends NavigationHost {
     return html`
       <nav>
         <ol>
-          ${this.items.map(
-            item => html`
-              <li>
-                <a href="${item.href}" ?active=${item.isActive}>
-                  <div>
-                    ${item.isActive ? item.iconFilled : item.iconOutlined}
-                    ${item.badge ? html`<span>${item.badge}</span>` : nothing}
-                  </div>
-
-                  ${item.label}
-                </a>
-              </li>
-            `
-          )}
+          ${this.items.map(renderNavigationItem)}
         </ol>
       </nav>
     `;

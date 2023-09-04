@@ -1,4 +1,4 @@
-import { LitElement, css, html } from 'lit';
+import { LitElement, css, html, nothing } from 'lit';
 import { property } from 'lit/decorators.js';
 import { consume } from '@lit-labs/context';
 import { dimNavigationHostContext } from './DimNavigationHostContext.js';
@@ -7,6 +7,11 @@ import { DimNavigation } from './DimNavigation.js';
 const iconOutlinedName = 'icon-outlined';
 const iconFilledName = 'icon-filled';
 
+/**
+ * A component to provide values needed to render navigation items in a navigation host. Does not render the navigation
+ * item itself as the layout varies between navigatiom hosts and is therefore the responsibility of the host.
+ * The navigation item is unaware of what host it is nested in.
+ */
 export class DimNavigationItem extends LitElement {
   static styles = css`
     :host {
@@ -338,8 +343,12 @@ export class DimNavigationItem extends LitElement {
   @property({ type: Boolean })
   isActive: boolean = false;
 
+  /**
+   * A short meaningful description of the destination.
+   * When used with navigation bar, avoid using icon without label
+   */
   @property({ type: String })
-  label = '';
+  label?: string;
 
   @property({ type: String })
   badge?: string;
@@ -419,4 +428,27 @@ export class DimNavigationItem extends LitElement {
       ></slot>
     `;
   }
+}
+
+/**
+ * Renders a navigation item for the navigation rail and navigatio bar but not the navigation drawer as the layout is
+ * different for that component.
+ * This is a function instead of a component as the drawer has different layout and avoid style encapsulation.
+ * A shared render function to reduce code duplication and errors introduced through code duplication.
+ * @param item the item to render
+ * @internal
+ */
+export function renderNavigationItem(item: DimNavigationItem) {
+  return html`
+    <li>
+      <a href="${item.href}" ?active=${item.isActive}>
+        <div>
+          ${item.isActive ? item.iconFilled : item.iconOutlined}
+          ${item.badge ? html`<span>${item.badge}</span>` : nothing}
+        </div>
+
+        ${item.label ? html`<span>${item.label}</span>` : nothing}
+      </a>
+    </li>
+  `;
 }
