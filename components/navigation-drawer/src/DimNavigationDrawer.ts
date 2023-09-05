@@ -55,10 +55,18 @@ export class DimNavigationDrawer extends NavigationHost {
           box-sizing: border-box;
 
           --_indicator-background-color: var(--_background-color);
+          --_state-layer-color: var(--md-sys-color-on-surface);
           background-color: var(--_indicator-background-color);
           --_indicator-color: var(--_color);
           color: var(--_indicator-color);
-          --_state-layer-color: var(--md-sys-color-on-surface);
+
+          font-family: var(--md-sys-typescale-label-large-font-family-name);
+          line-height: var(--md-sys-typescale-label-large-line-height);
+          font-size: var(--md-sys-typescale-label-large-font-size);
+          font-style: var(--md-sys-typescale-label-large-font-family-style);
+          letter-spacing: var(--md-sys-typescale-label-large-letter-spacing);
+          font-weight: var(--md-sys-typescale-label-large-font-weight);
+
           border-radius: var(--md-sys-shape-corner-extra-large);
 
           cursor: pointer;
