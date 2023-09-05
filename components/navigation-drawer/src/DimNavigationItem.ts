@@ -92,8 +92,7 @@ export class DimNavigationItem extends LitElement {
 /**
  * Renders a navigation item for the navigation rail and navigatio bar but not the navigation drawer as the layout is
  * different for that component.
- * This is a function instead of a component as the drawer has different layout and avoid style encapsulation.
- * A shared render function to reduce code duplication and errors introduced through code duplication.
+ * This is a function to avoid style encapsulation to let the consumers apply different styles easier.
  * @param item the item to render
  * @internal
  */

@@ -6,9 +6,7 @@ import { DimNavigationDrawer } from './DimNavigationDrawer.js';
 import { DimSectionHeader } from './DimSectionHeader.js';
 
 /**
- * Order of registratiaon matters! A navigation host must be registered before the navigation item.
- * Otherwise it seems like the navigation item is sending the "context-request" event before the navigation host has
- * initialized the provider listening. In this case the host is the navigation drawer
+ * Order of registratiaon matters! (For components that depend on the lifecycle events of other components)
  */
 window.customElements.define('dim-navigation-bar', DimNavigationBar);
 window.customElements.define('dim-navigation-rail', DimNavigationRail);

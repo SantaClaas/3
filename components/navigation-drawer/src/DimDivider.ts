@@ -1,8 +1,5 @@
 import { LitElement, css, html } from 'lit';
 
-//TODO add badges support
-//TODO use filled out icons for current destination
-//TODO only use expanded after > 1239dp https://m3.material.io/components/navigation-drawer/guidelines#81b637af-d1c6-4edd-84fd-487eb9860d76
 export class DimDivider extends LitElement {
   static styles =
     // Only configure styles that are different between buttons

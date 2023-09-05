@@ -1,4 +1,4 @@
-import { css, html, nothing } from 'lit';
+import { css, html } from 'lit';
 import { Ref, createRef, ref } from 'lit/directives/ref.js';
 import NavigationHost from './NavigationHost.js';
 import {
