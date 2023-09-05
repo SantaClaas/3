@@ -69,12 +69,20 @@ export class DimNavigationRail extends NavigationHost {
 
               border-radius: 100px;
 
-              & svg {
+              & svg:first-of-type {
                 height: 24px;
                 width: 24px;
               }
 
               /* Badge */
+              --_no-label-badge-position-top: 16px;
+              & svg:nth-of-type(2) {
+                position: absolute;
+
+                inset: var(--_no-label-badge-position-top) 16px auto auto;
+                color: var(--md-sys-color-error);
+              }
+
               --_badge-position-top: 14px;
               & span {
                 position: absolute;
@@ -113,9 +121,10 @@ export class DimNavigationRail extends NavigationHost {
             }
 
             /* Has label */
-            &:has(span) div {
+            &:has(div + span) div {
               --_icon-container-padding-y: 4px;
               --_badge-position-top: 2px;
+              --_no-label-badge-position-top: 4px;
             }
 
             /* States */

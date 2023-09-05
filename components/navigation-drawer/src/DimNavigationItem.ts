@@ -1,4 +1,4 @@
-import { LitElement, html, nothing } from 'lit';
+import { LitElement, html, nothing, svg } from 'lit';
 import { property } from 'lit/decorators.js';
 
 const iconOutlinedName = 'icon-outlined';
@@ -89,6 +89,31 @@ export class DimNavigationItem extends LitElement {
   }
 }
 
+function badge(text?: string) {
+  switch (text) {
+    // Empty badge
+    case '':
+      return svg`
+        <svg viewBox="0 0 6 6" height="6" width="6" >
+          <circle cx="3" cy="3" r="3" fill="currentColor" />
+        </svg>
+      `;
+
+    case undefined:
+      return nothing;
+
+    default: {
+      // Maximum badge label length is 4
+      const asNumber = Number(text);
+      if (Number.isNaN(asNumber)) return html`<span>${text.slice(0, 4)}</span>`;
+
+      // For numbers we allow 3 digits and add plus at the end
+      if (asNumber > 999) return html`<span>999+</span>`;
+
+      return html`<span>${text}</span>`;
+    }
+  }
+}
 /**
  * Renders a navigation item for the navigation rail and navigatio bar but not the navigation drawer as the layout is
  * different for that component.
@@ -102,7 +127,7 @@ export function renderNavigationItem(item: DimNavigationItem) {
       <a href="${item.href}" ?active=${item.isActive}>
         <div>
           ${item.isActive ? item.iconFilled : item.iconOutlined}
-          ${item.badge ? html`<span>${item.badge}</span>` : nothing}
+          ${badge(item.badge)}
         </div>
 
         ${item.label ? html`<span>${item.label}</span>` : nothing}

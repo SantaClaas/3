@@ -70,12 +70,18 @@ export class DimNavigationBar extends NavigationHost {
 
               border-radius: var(--md-sys-shape-corner-large);
 
-              & svg {
+              & svg:first-of-type {
                 height: 24px;
                 width: 24px;
               }
 
               /* Badge */
+              & svg:nth-of-type(2) {
+                position: absolute;
+                inset: 4px 16px auto auto;
+                color: var(--md-sys-color-error);
+              }
+
               & span {
                 position: absolute;
                 inset: 2px auto auto 50%;
