@@ -44,6 +44,7 @@ export class DimNavigationDrawer extends NavigationHost {
 
       & ol {
         all: unset;
+        list-style-type: none;
         & li a {
           all: unset;
 
