@@ -16,6 +16,8 @@
     "@claas.dev/dim-outlined-button": "*",
     "@claas.dev/dim-text-button": "*",
     "@claas.dev/dim-floating-action-button": "*",
+    "@claas.dev/dim-navigation-bar": "*",
+    "@claas.dev/dim-navigation-rail": "*",
     "@claas.dev/dim-navigation-drawer": "*"
   },
   "devDependencies": {

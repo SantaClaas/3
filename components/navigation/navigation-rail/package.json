@@ -1,6 +1,6 @@
 {
-  "name": "@claas.dev/dim-navigation-drawer",
-  "description": "Webcomponent dim-navigation-drawer following open-wc recommendations",
+  "name": "@claas.dev/dim-navigation-rail",
+  "description": "Webcomponent dim-navigation-rail following open-wc recommendations",
   "license": "Apache-2.0",
   "author": "Claas",
   "version": "0.1.1",
@@ -9,7 +9,7 @@
   "module": "dist/src/index.js",
   "exports": {
     ".": "./dist/src/index.js",
-    "./dim-navigation-drawer.js": "./dist/src/dim-navigation-drawer.js"
+    "./dim-navigation-rail.js": "./dist/src/dim-navigation-rail.js"
   },
   "files": [
     "dist/src"
@@ -25,7 +25,8 @@
     "format": "eslint --ext .ts,.html . --fix --ignore-path .gitignore && prettier \"**/*.ts\" --write --ignore-path .gitignore"
   },
   "dependencies": {
-    "lit": "^2.0.2"
+    "lit": "^2.0.2",
+    "@claas.dev/dim-navigation": "*"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.4.17",

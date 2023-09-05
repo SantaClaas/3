@@ -1,7 +1,6 @@
+import { DimNavigationItem, NavigationHost } from '@claas.dev/dim-navigation';
 import { css, html, nothing } from 'lit';
 import { Ref, createRef, ref } from 'lit/directives/ref.js';
-import NavigationHost from './NavigationHost.js';
-import { DimNavigationItem } from './DimNavigationItem.js';
 
 export class DimNavigationDrawer extends NavigationHost {
   static styles = css`

@@ -1,10 +1,10 @@
 import { css, html } from 'lit';
 import { Ref, createRef, ref } from 'lit/directives/ref.js';
-import NavigationHost from './NavigationHost.js';
 import {
   DimNavigationItem,
+  NavigationHost,
   renderNavigationItem,
-} from './DimNavigationItem.js';
+} from '@claas.dev/dim-navigation';
 
 export class DimNavigationBar extends NavigationHost {
   /**

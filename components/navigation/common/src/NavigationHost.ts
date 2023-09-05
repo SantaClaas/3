@@ -1,13 +1,7 @@
 import { LitElement } from 'lit';
 import { DimNavigationItem } from './DimNavigationItem.js';
-import { DimSectionHeader } from './DimSectionHeader.js';
 
-export type NavigationElement = DimSectionHeader | DimNavigationItem;
-
-/**
- * @internal
- */
-export default abstract class NavigationHost extends LitElement {
+export abstract class NavigationHost extends LitElement {
   #elements: Element[] = [];
 
   protected set elements(value: Element[]) {

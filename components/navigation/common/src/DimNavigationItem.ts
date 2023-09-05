@@ -5,6 +5,11 @@ const iconOutlinedName = 'icon-outlined';
 const iconFilledName = 'icon-filled';
 
 /**
+ * The name of the component to reduce errors when registered by other component packages as they have to control the
+ * order in which they and this component needs to be registered.
+ */
+export const navigationItemComponentName = 'dim-navigation-item';
+/**
  * A component to provide values needed to render navigation items in a navigation host. Does not render the navigation
  * item itself as the layout varies between navigatiom hosts and is therefore the responsibility of the host.
  * The navigation item is unaware of what host it is nested in.
@@ -29,7 +34,6 @@ export class DimNavigationItem extends LitElement {
     return this.#hrefAbsolute;
   }
 
-  /** @internal */
   @property({ type: Boolean })
   isActive: boolean = false;
 
@@ -43,16 +47,8 @@ export class DimNavigationItem extends LitElement {
   @property({ type: String })
   badge?: string;
 
-  /**
-   *
-   * @internal
-   */
   iconOutlined?: Element[];
 
-  /**
-   *
-   * @internal
-   */
   iconFilled?: Element[];
 
   #iconOutlinedChanged(event: Event) {
@@ -114,12 +110,12 @@ function badge(text?: string) {
     }
   }
 }
+
 /**
  * Renders a navigation item for the navigation rail and navigatio bar but not the navigation drawer as the layout is
  * different for that component.
  * This is a function to avoid style encapsulation to let the consumers apply different styles easier.
  * @param item the item to render
- * @internal
  */
 export function renderNavigationItem(item: DimNavigationItem) {
   return html`

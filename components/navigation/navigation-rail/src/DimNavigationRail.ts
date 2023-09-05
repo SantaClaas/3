@@ -1,10 +1,10 @@
-import { css, html } from 'lit';
-import { Ref, createRef, ref } from 'lit/directives/ref.js';
-import NavigationHost from './NavigationHost.js';
 import {
+  NavigationHost,
   DimNavigationItem,
   renderNavigationItem,
-} from './DimNavigationItem.js';
+} from '@claas.dev/dim-navigation';
+import { css, html } from 'lit';
+import { Ref, createRef, ref } from 'lit/directives/ref.js';
 
 export class DimNavigationRail extends NavigationHost {
   static styles = css`
