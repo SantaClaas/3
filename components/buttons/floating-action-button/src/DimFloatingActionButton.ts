@@ -12,7 +12,7 @@ export class DimFloatingActionButton extends LitElement {
         all: unset;
 
         display: inline-block;
-        box-shadow: var(--md-sys-elevation-3-shadow);
+        box-shadow: var(--md-sys-elevation-level-3-shadow);
         background-color: var(--_background-color);
         color: var(--_color);
         border-radius: 16px;
@@ -29,7 +29,7 @@ export class DimFloatingActionButton extends LitElement {
         }
 
         &:hover {
-          box-shadow: var(--md-sys-elevation-4-shadow);
+          box-shadow: var(--md-sys-elevation-level-4-shadow);
           background-color: color-mix(
             in srgb,
             var(--_color) var(--md-sys-state-hover-state-layer-opacity),

@@ -1,1 +1,1 @@
-export { DimNavigation } from './DimNavigation.js';
+export { DimNavigationDrawer } from './DimNavigationDrawer.js';

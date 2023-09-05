@@ -147,7 +147,7 @@ export abstract class DimButton extends LitElement {
           var(--md-sys-color-on-surface) 38%,
           transparent
         );
-        box-shadow: var(--_shadow-disabled, --md-sys-elevation-0-shadow);
+        box-shadow: var(--_shadow-disabled, --md-sys-elevation-level-0-shadow);
         border: var(--_border-disabled, none);
       }
     }

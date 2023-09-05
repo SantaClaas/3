@@ -8,8 +8,8 @@ export class DimFilledButton extends DimButton {
       button:enabled {
         --_color: var(--md-sys-color-on-primary);
         --_background-color: var(--md-sys-color-primary);
-        --_shadow-default: var(--md-sys-elevation-0-shadow);
-        --_shadow-elevated: var(--md-sys-elevation-1-shadow);
+        --_shadow-default: var(--md-sys-elevation-level-0-shadow);
+        --_shadow-elevated: var(--md-sys-elevation-level-1-shadow);
       }
     `,
     DimButton.styles,

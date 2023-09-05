@@ -14,7 +14,7 @@ export class DimTextButton extends DimButton {
           --_color: var(--md-sys-color-primary);
           --_background-color: transparent;
 
-          --_shadow-default: var(--md-sys-elevation-0-shadow);
+          --_shadow-default: var(--md-sys-elevation-level-0-shadow);
           --_shadow-elevated: none;
         }
 

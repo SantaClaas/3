@@ -8,8 +8,8 @@ export class DimElevatedButton extends DimButton {
       button:enabled {
         --_color: var(--md-sys-color-primary);
         --_background-color: var(--md-sys-color-surface-container-low);
-        --_shadow-default: var(--md-sys-elevation-1-shadow);
-        --_shadow-elevated: var(--md-sys-elevation-2-shadow);
+        --_shadow-default: var(--md-sys-elevation-level-1-shadow);
+        --_shadow-elevated: var(--md-sys-elevation-level-2-shadow);
       }
     `,
     DimButton.styles,

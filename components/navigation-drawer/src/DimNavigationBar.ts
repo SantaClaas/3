@@ -1,6 +1,10 @@
-import { css, html } from 'lit';
+import { css, html, nothing } from 'lit';
+import { Ref, createRef, ref } from 'lit/directives/ref.js';
 import NavigationHost from './NavigationHost.js';
-import { renderNavigationItem } from './DimNavigationItem.js';
+import {
+  DimNavigationItem,
+  renderNavigationItem,
+} from './DimNavigationItem.js';
 
 export class DimNavigationBar extends NavigationHost {
   /**
@@ -187,15 +191,42 @@ export class DimNavigationBar extends NavigationHost {
         }
       }
     }
+
+    slot {
+      display: none;
+    }
   `;
+
+  #slotReference: Ref<HTMLSlotElement> = createRef();
+
+  protected firstUpdated(): void {
+    if (!(this.#slotReference.value instanceof HTMLSlotElement))
+      // If this errors we broke the components logic. It is expected to not throw here but there is no development time
+      // guarantee
+      throw new Error('Slot needs to be rendered for navigation host to work');
+
+    this.elements = this.#slotReference.value.assignedElements();
+    this.updateComplete.then(() => {
+      this.requestUpdate();
+    });
+  }
 
   render() {
     return html`
       <nav>
         <ol>
-          ${this.items.map(renderNavigationItem)}
+          ${this.elements
+            .filter(
+              (item): item is DimNavigationItem =>
+                item instanceof DimNavigationItem
+            )
+            // Contain 3 - 5 destinations
+            .slice(0, 5)
+            .map(renderNavigationItem)}
         </ol>
       </nav>
+
+      <slot ${ref(this.#slotReference)}></slot>
     `;
   }
 }

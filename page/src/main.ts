@@ -6,4 +6,4 @@ import "@claas.dev/dim-filled-tonal-button/dim-filled-tonal-button.js";
 import "@claas.dev/dim-outlined-button/dim-outlined-button.js";
 import "@claas.dev/dim-text-button/dim-text-button.js";
 import "@claas.dev/dim-floating-action-button/dim-floating-action-button.js";
-import "@claas.dev/dim-navigation/dim-navigation.js";
+import "@claas.dev/dim-navigation-drawer/dim-navigation-drawer.js";

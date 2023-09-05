@@ -181,8 +181,11 @@
     </dim-text-button>
   </main>
 
-  <dim-navigation-rail>
-    <dim-navigation-item label="Inbox" href="inbox" badge="32">
+  <dim-navigation-drawer>
+
+    <dim-section-header>Mail</dim-section-header>
+
+    <dim-navigation-item label="Inbox" href="inbox" badge="24">
       <!-- Optional icon -->
       <!-- If icon is provided, an outlined and filled variant is required -->
       <!-- Using slot name icon-outlined/filled instead of icon-active/inactive makes it clearer what is requried by component users and helps distinguish icons in markup -->
@@ -197,7 +200,7 @@
       </svg>
     </dim-navigation-item>
 
-    <dim-navigation-item label="Outbox" href="outbox" badge="3">
+    <dim-navigation-item label="Outbox" href="outbox">
       <svg slot="icon-outlined" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48">
         <path fill="currentColor"
           d="M120-160v-640l760 320-760 320Zm60-93 544-227-544-230v168l242 62-242 60v167Zm0 0v-457 457Z" />
@@ -239,7 +242,55 @@
       </svg>
 
     </dim-navigation-item>
-  </dim-navigation-rail>
+
+
+    <dim-divider></dim-divider>
+
+    <!-- Labels -->
+    <dim-section-header>
+      <h2>Labels</h2>
+    </dim-section-header>
+
+    <dim-navigation-item label="Label 1" href="labels/1">
+      <svg slot="icon-outlined" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" stroke="currentColor"
+          d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18Z" />
+      </svg>
+
+      <svg slot="icon-filled" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" fill="currentColor"
+          d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18Z" />
+      </svg>
+    </dim-navigation-item>
+
+    <dim-navigation-item label="Label 2" href="labels/2">
+      <svg slot="icon-outlined" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" stroke="currentColor"
+          d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18Z" />
+      </svg>
+
+      <svg slot="icon-filled" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" fill="currentColor"
+          d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18Z" />
+      </svg>
+    </dim-navigation-item>
+
+    <dim-navigation-item label="Label 3" href="labels/3">
+      <svg slot="icon-outlined" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" stroke="currentColor"
+          d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18Z" />
+      </svg>
+
+      <svg slot="icon-filled" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" fill="currentColor"
+          d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18Z" />
+      </svg>
+    </dim-navigation-item>
+
+  </dim-navigation-drawer>
 
 </body>
 

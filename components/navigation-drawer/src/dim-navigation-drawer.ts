@@ -1,9 +1,9 @@
-import { DimNavigation } from './DimNavigation.js';
 import { DimDivider } from './DimDivider.js';
-import { DimNavigationSection } from './DimNavigationSection.js';
 import { DimNavigationItem } from './DimNavigationItem.js';
 import { DimNavigationBar } from './DimNavigationBar.js';
 import { DimNavigationRail } from './DimNavigationRail.js';
+import { DimNavigationDrawer } from './DimNavigationDrawer.js';
+import { DimSectionHeader } from './DimSectionHeader.js';
 
 /**
  * Order of registratiaon matters! A navigation host must be registered before the navigation item.
@@ -12,7 +12,7 @@ import { DimNavigationRail } from './DimNavigationRail.js';
  */
 window.customElements.define('dim-navigation-bar', DimNavigationBar);
 window.customElements.define('dim-navigation-rail', DimNavigationRail);
-window.customElements.define('dim-navigation', DimNavigation);
+window.customElements.define('dim-navigation-drawer', DimNavigationDrawer);
 window.customElements.define('dim-navigation-item', DimNavigationItem);
-window.customElements.define('dim-navigation-section', DimNavigationSection);
+window.customElements.define('dim-section-header', DimSectionHeader);
 window.customElements.define('dim-divider', DimDivider);

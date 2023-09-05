@@ -2,23 +2,36 @@ import { LitElement } from 'lit';
 import { provide } from '@lit-labs/context';
 import { DimNavigationItem } from './DimNavigationItem.js';
 import { dimNavigationHostContext } from './DimNavigationHostContext.js';
+import { DimSectionHeader } from './DimSectionHeader.js';
+
+export type NavigationElement = DimSectionHeader | DimNavigationItem;
 
 /**
  * @internal
  */
 export default abstract class NavigationHost extends LitElement {
-  /**
-   * The drawer is the host of the navigation items and manages the active item as there can only be one navigation item
-   * active at a time but the navigation items are not aware of each other which is why it is delegated to the host.
-   */
-  protected items: DimNavigationItem[] = [];
+  #elements: Element[] = [];
+
+  protected set elements(value: Element[]) {
+    this.#elements = value;
+
+    this.#updateActiveItem();
+  }
+
+  protected get elements() {
+    return this.#elements;
+  }
 
   @provide({ context: dimNavigationHostContext })
   private navigationHost: typeof this = this;
 
-  static #findActive(items: DimNavigationItem[]): DimNavigationItem | null {
+  static #findActiveNavigation(items: Element[]): DimNavigationItem | null {
     for (const item of items) {
-      if (item.href !== window.location.href) continue;
+      if (
+        !(item instanceof DimNavigationItem) ||
+        item.href !== window.location.href
+      )
+        continue;
 
       // Only the first item is marked as active as multiple items being active is unwanted behavior
       return item;
@@ -32,16 +45,20 @@ export default abstract class NavigationHost extends LitElement {
    * @param item the navigation item to register
    * @internal
    */
-  register(item: DimNavigationItem) {
-    if (this.items.includes(item)) return;
+  register(item: NavigationElement) {
+    // This avoids duplicate registration as some components are moved and appear multiple times in the navigation host
+    // subtree
+    if (this.elements.includes(item)) {
+      console.debug('dub');
+      return;
+    }
 
-    // Items should register in the order of their DOM appearance
-    this.items.push(item);
+    // Assume items register in the order of their DOM appearance
+    this.elements.push(item);
 
-    // Find active
-    const activeItem = NavigationHost.#findActive(this.items);
-
-    if (activeItem) this.#setActiveItem(activeItem);
+    if (item instanceof DimSectionHeader || this.#updateActiveItem()) {
+      this.requestUpdate();
+    }
   }
 
   /**
@@ -49,33 +66,37 @@ export default abstract class NavigationHost extends LitElement {
    * @param item the item to unregister
    * @internal
    */
-  unregister(item: DimNavigationItem) {
-    const index = this.items.indexOf(item);
+  unregister(item: NavigationElement) {
+    const index = this.elements.indexOf(item);
     if (!index) return;
 
-    this.items.slice(index, 1);
+    this.elements.slice(index, 1);
 
-    const activeItem = NavigationHost.#findActive(this.items);
-    if (activeItem) this.#setActiveItem(activeItem);
+    if (item instanceof DimSectionHeader || this.#updateActiveItem())
+      this.requestUpdate();
   }
 
   #activeItem?: DimNavigationItem;
 
   /**
-   * Sets the item as current active navigation item and unsets the old one if there was one before
+   * Finds and sets the item as current active navigation item and unsets the old one if there was one before
    * @param item the item to set as active item
+   * @returns true if the active item changed, else false
    */
-  #setActiveItem(item: DimNavigationItem) {
+  #updateActiveItem(): boolean {
+    const newActive = NavigationHost.#findActiveNavigation(this.elements);
+    // Don't change active item if we could not find an active item
+    if (!newActive) return false;
+
     // If active item did not change, avoid updating and possibly triggering render
-    if (this.#activeItem === item) return;
+    if (this.#activeItem === newActive) return false;
 
     // Unset previous active item
     if (this.#activeItem) this.#activeItem.isActive = false;
 
-    this.#activeItem = item;
+    this.#activeItem = newActive;
     this.#activeItem.isActive = true;
 
-    // Initiate render as the active icon changes appearance
-    this.requestUpdate();
+    return true;
   }
 }

@@ -1,31 +1,31 @@
 /* Tokens not created with material theme builder and collected from various other sources like documentation and Figma Material 3 Design Kit.
 These tokens might not follow naming guidelines */
 :root {
-  --md-sys-elevation-0-shadow: none;
+  --md-sys-elevation-level-0-shadow: none;
 
   /* Elevation */
   /* light */
   /* Use --md-sys-color-shadow for shadow color maybe? */
-  --md-sys-elevation-light-1-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15),
+  --md-sys-elevation-light-level-1-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15),
     0px 1px 2px 0px rgba(0, 0, 0, 0.3);
-  --md-sys-elevation-light-2-shadow: 0px 2px 6px 2px rgba(0, 0, 0, 0.15),
+  --md-sys-elevation-light-level-2-shadow: 0px 2px 6px 2px rgba(0, 0, 0, 0.15),
     0px 1px 2px 0px rgba(0, 0, 0, 0.3);
-  --md-sys-elevation-light-3-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.3),
+  --md-sys-elevation-light-level-3-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.3),
     0px 4px 8px 3px rgba(0, 0, 0, 0.15);
-  --md-sys-elevation-light-4-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.3),
+  --md-sys-elevation-light-level-4-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.3),
     0px 6px 10px 4px rgba(0, 0, 0, 0.15);
-  --md-sys-elevation-light-5-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.3),
+  --md-sys-elevation-light-level-5-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.3),
     0px 8px 12px 6px rgba(0, 0, 0, 0.15);
   /* dark */
-  --md-sys-elevation-dark-1-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.3),
+  --md-sys-elevation-dark-level-1-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.3),
     0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-  --md-sys-elevation-dark-2-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.3),
+  --md-sys-elevation-dark-level-2-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.3),
     0px 2px 6px 2px rgba(0, 0, 0, 0.15);
-  --md-sys-elevation-dark-3-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.3),
+  --md-sys-elevation-dark-level-3-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.3),
     0px 4px 8px 3px rgba(0, 0, 0, 0.15);
-  --md-sys-elevation-dark-4-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.3),
+  --md-sys-elevation-dark-level-4-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.3),
     0px 6px 10px 4px rgba(0, 0, 0, 0.15);
-  --md-sys-elevation-dark-5-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.3),
+  --md-sys-elevation-dark-level-5-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.3),
     0px 8px 12px 6px rgba(0, 0, 0, 0.15);
 
   /* https://m3.material.io/styles/elevation/tokens */

@@ -1,7 +1,17 @@
 :root {
-  --md-sys-elevation-1-shadow: var(--md-sys-elevation-dark-1-shadow);
-  --md-sys-elevation-2-shadow: var(--md-sys-elevation-dark-2-shadow);
-  --md-sys-elevation-3-shadow: var(--md-sys-elevation-dark-3-shadow);
-  --md-sys-elevation-4-shadow: var(--md-sys-elevation-dark-4-shadow);
-  --md-sys-elevation-5-shadow: var(--md-sys-elevation-dark-5-shadow);
+  --md-sys-elevation-level-1-shadow: var(
+    --md-sys-elevation-dark-level-1-shadow
+  );
+  --md-sys-elevation-level-2-shadow: var(
+    --md-sys-elevation-dark-level-2-shadow
+  );
+  --md-sys-elevation-level-3-shadow: var(
+    --md-sys-elevation-dark-level-3-shadow
+  );
+  --md-sys-elevation-level-4-shadow: var(
+    --md-sys-elevation-dark-level-4-shadow
+  );
+  --md-sys-elevation-level-5-shadow: var(
+    --md-sys-elevation-dark-level-5-shadow
+  );
 }

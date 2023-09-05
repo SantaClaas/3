@@ -1,6 +1,6 @@
 {
-  "name": "@claas.dev/dim-navigation",
-  "description": "Webcomponent dim-navigation following open-wc recommendations",
+  "name": "@claas.dev/dim-navigation-drawer",
+  "description": "Webcomponent dim-navigation-drawer following open-wc recommendations",
   "license": "Apache-2.0",
   "author": "Claas",
   "version": "0.1.1",
@@ -9,7 +9,7 @@
   "module": "dist/src/index.js",
   "exports": {
     ".": "./dist/src/index.js",
-    "./dim-navigation.js": "./dist/src/dim-navigation.js"
+    "./dim-navigation-drawer.js": "./dist/src/dim-navigation-drawer.js"
   },
   "files": [
     "dist/src"
