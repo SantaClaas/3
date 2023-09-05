@@ -25,7 +25,6 @@
     "format": "eslint --ext .ts,.html . --fix --ignore-path .gitignore && prettier \"**/*.ts\" --write --ignore-path .gitignore"
   },
   "dependencies": {
-    "@lit-labs/context": "^0.4.0",
     "lit": "^2.0.2"
   },
   "devDependencies": {

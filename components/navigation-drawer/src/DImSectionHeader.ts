@@ -1,7 +1,4 @@
-import { consume } from '@lit-labs/context';
 import { LitElement, css, html } from 'lit';
-import { dimNavigationHostContext } from './DimNavigationHostContext.js';
-import NavigationHost from './NavigationHost.js';
 
 export class DimSectionHeader extends LitElement {
   static styles = css`
@@ -18,9 +15,6 @@ export class DimSectionHeader extends LitElement {
       font-weight: var(--md-sys-typescale-title-small-font-weight);
     }
   `;
-
-  @consume({ context: dimNavigationHostContext })
-  private navigationHost?: NavigationHost;
 
   render() {
     // Headline should use h1-h6 but that is a user decision depending on layout

@@ -1,7 +1,5 @@
 import { LitElement } from 'lit';
-import { provide } from '@lit-labs/context';
 import { DimNavigationItem } from './DimNavigationItem.js';
-import { dimNavigationHostContext } from './DimNavigationHostContext.js';
 import { DimSectionHeader } from './DimSectionHeader.js';
 
 export type NavigationElement = DimSectionHeader | DimNavigationItem;
@@ -22,9 +20,6 @@ export default abstract class NavigationHost extends LitElement {
     return this.#elements;
   }
 
-  @provide({ context: dimNavigationHostContext })
-  private navigationHost: typeof this = this;
-
   static #findActiveNavigation(items: Element[]): DimNavigationItem | null {
     for (const item of items) {
       if (
@@ -38,42 +33,6 @@ export default abstract class NavigationHost extends LitElement {
     }
 
     return null;
-  }
-
-  /**
-   * Adds a navigation item to the navigation host and recalculates the current active navigation item
-   * @param item the navigation item to register
-   * @internal
-   */
-  register(item: NavigationElement) {
-    // This avoids duplicate registration as some components are moved and appear multiple times in the navigation host
-    // subtree
-    if (this.elements.includes(item)) {
-      console.debug('dub');
-      return;
-    }
-
-    // Assume items register in the order of their DOM appearance
-    this.elements.push(item);
-
-    if (item instanceof DimSectionHeader || this.#updateActiveItem()) {
-      this.requestUpdate();
-    }
-  }
-
-  /**
-   * Removes the navigation item from the navigation host and recalculates the active navigation element
-   * @param item the item to unregister
-   * @internal
-   */
-  unregister(item: NavigationElement) {
-    const index = this.elements.indexOf(item);
-    if (!index) return;
-
-    this.elements.slice(index, 1);
-
-    if (item instanceof DimSectionHeader || this.#updateActiveItem())
-      this.requestUpdate();
   }
 
   #activeItem?: DimNavigationItem;
