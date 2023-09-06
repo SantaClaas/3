@@ -6,7 +6,7 @@
     "page"
   ],
   "scripts": {
-    "dev": "lerna run dev",
+    "dev": "lerna run dev --concurrency=14",
     "build": "lerna run build"
   },
   "devDependencies": {
