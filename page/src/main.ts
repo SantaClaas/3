@@ -9,3 +9,4 @@ import "@claas.dev/dim-floating-action-button/dim-floating-action-button.js";
 import "@claas.dev/dim-navigation-bar/dim-navigation-bar.js";
 import "@claas.dev/dim-navigation-rail/dim-navigation-rail.js";
 import "@claas.dev/dim-navigation-drawer/dim-navigation-drawer.js";
+import "@claas.dev/dim-layout/dim-layout.js";

@@ -18,168 +18,192 @@
     }
 
     body {
-      display: grid;
-      /* Navigation needs to be after content to overlay it but visually appear before it for bar and drawer */
-      grid-template-columns: [navigation-start] auto [navigation-end] 1fr;
-
-      margin: 0;
-      height: 100dvh;
+      all: unset;
     }
 
-    dim-navigation {
-      grid-column: navigation-start / navigation-end;
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      all: unset;
+      display: block;
+      padding-block: 16px;
     }
 
-    main {
-      grid-column-start: navigation-end;
+    p {
+      all: unset;
+      display: block;
+      padding-block: 12px;
+    }
+
+
+    p {
+      /* Body large */
+      font-family: var(--md-sys-typescale-body-large-font-family-name);
+      font-style: var(--md-sys-typescale-body-large-font-family-style);
+      font-weight: var(--md-sys-typescale-body-large-font-weight);
+      font-size: var(--md-sys-typescale-body-large-font-size);
+      letter-spacing: var(--md-sys-typescale-body-large-tracking);
+      line-height: var(--md-sys-typescale-body-large-line-height);
+      text-transform: var(--md-sys-typescale-body-large-text-transform);
+      text-decoration: var(--md-sys-typescale-body-large-text-decoration);
+
     }
   </style>
 </head>
 
 <body>
 
+  <dim-layout>
+    <a slot="leading-navigation-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+        <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" fill="currentColor" />
+      </svg>
+    </a>
 
-  <main>
-    <h1>Components</h1>
+    <h1 slot="headline">Dim Components</h1>
+    <main>
+      <h2 class="headline-medium">Floating Action Button (FAB)</h2>
+      <p>Using an SVG icon might require setting <code>fill="currentColor"</code> or <code>stroke="currentColor"</code>
+        depending on
+        your icon.</p>
+      <dim-floating-action-button>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" heigth="48" width="48">
+          <path fill="currentColor"
+            d="M180-180h44l443-443-44-44-443 443v44Zm614-486L666-794l42-42q17-17 42-17t42 17l44 44q17 17 17 42t-17 42l-42 42Zm-42 42L248-120H120v-128l504-504 128 128Zm-107-21-22-22 44 44-22-22Z" />
+        </svg>
+      </dim-floating-action-button>
 
-    <h2>Floating Action Button (FAB)</h2>
-    <p>Using an SVG icon might require setting <code>fill="currentColor"</code> or <code>stroke="currentColor"</code>
-      depending on
-      your icon.</p>
-    <dim-floating-action-button>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" heigth="48" width="48">
-        <path fill="currentColor"
-          d="M180-180h44l443-443-44-44-443 443v44Zm614-486L666-794l42-42q17-17 42-17t42 17l44 44q17 17 17 42t-17 42l-42 42Zm-42 42L248-120H120v-128l504-504 128 128Zm-107-21-22-22 44 44-22-22Z" />
-      </svg>
-    </dim-floating-action-button>
+      <h2 class="headline-medium" class="headline-medium">Outlined Input</h2>
+      <h3 class="title-large">Default (not recommended)</h3>
+      <p>This state is presentable and does not error but it is intended to be used with a label attribute</p>
+      <dim-outlined-input></dim-outlined-input>
+      <h3 class="title-large">Label</h3>
+      <dim-outlined-input label="Label text"></dim-outlined-input>
+      <h3 class="title-large">Value</h3>
+      <dim-outlined-input label="Label text" value="value"></dim-outlined-input>
+      <h3 class="title-large">Autofocus</h3>
+      <p>There can only be one component per page with autofocus</p>
+      <dim-outlined-input label="Label text" autofocus></dim-outlined-input>
+      <h3 class="title-large">Placeholder</h3>
+      <dim-outlined-input label="Label text" placeholder="Placeholder"></dim-outlined-input>
+      <h3 class="title-large">Disabled</h3>
+      <dim-outlined-input label="Label text" disabled></dim-outlined-input>
+      <h3 class="title-large">Disabled with value</h3>
+      <dim-outlined-input label="Label text" value="value" disabled></dim-outlined-input>
 
-    <h2>Outlined Input</h2>
-    <h3>Default (not recommended)</h3>
-    <p>This state is presentable and does not error but it is intended to be used with a label attribute</p>
-    <dim-outlined-input></dim-outlined-input>
-    <h3>Label</h3>
-    <dim-outlined-input label="Label text"></dim-outlined-input>
-    <h3>Value</h3>
-    <dim-outlined-input label="Label text" value="value"></dim-outlined-input>
-    <h3>Autofocus</h3>
-    <p>There can only be one component per page with autofocus</p>
-    <dim-outlined-input label="Label text" autofocus></dim-outlined-input>
-    <h3>Placeholder</h3>
-    <dim-outlined-input label="Label text" placeholder="Placeholder"></dim-outlined-input>
-    <h3>Disabled</h3>
-    <dim-outlined-input label="Label text" disabled></dim-outlined-input>
-    <h3>Disabled with value</h3>
-    <dim-outlined-input label="Label text" value="value" disabled></dim-outlined-input>
+      <h2 class="headline-medium">Elevated Button</h2>
+      <h3 class="title-large">Default</h3>
+      <dim-elevated-button>Label</dim-elevated-button>
+      <h3 class="title-large">With Icon</h3>
+      <p>Using an SVG icon might require setting <code>fill="currentColor"</code> or <code>stroke="currentColor"</code>
+        depending on
+        your icon.</p>
+      <dim-elevated-button>
+        <svg slot="icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" heigth="48"
+          width="48">
+          <path d="M450-450H200v-60h250v-250h60v250h250v60H510v250h-60v-250Z" />
+        </svg>
+        <span>Label</span>
+      </dim-elevated-button>
+      <h3 class="title-large">Disabled</h3>
+      <dim-elevated-button disabled>
+        <svg slot="icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" heigth="48"
+          width="48">
+          <path d="M450-450H200v-60h250v-250h60v250h250v60H510v250h-60v-250Z" />
+        </svg>
+        <span>Label</span>
+      </dim-elevated-button>
 
-    <h2>Elevated Button</h2>
-    <h3>Default</h3>
-    <dim-elevated-button>Label</dim-elevated-button>
-    <h3>With Icon</h3>
-    <p>Using an SVG icon might require setting <code>fill="currentColor"</code> or <code>stroke="currentColor"</code>
-      depending on
-      your icon.</p>
-    <dim-elevated-button>
-      <svg slot="icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" heigth="48"
-        width="48">
-        <path d="M450-450H200v-60h250v-250h60v250h250v60H510v250h-60v-250Z" />
-      </svg>
-      <span>Label</span>
-    </dim-elevated-button>
-    <h3>Disabled</h3>
-    <dim-elevated-button disabled>
-      <svg slot="icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" heigth="48"
-        width="48">
-        <path d="M450-450H200v-60h250v-250h60v250h250v60H510v250h-60v-250Z" />
-      </svg>
-      <span>Label</span>
-    </dim-elevated-button>
+      <h2 class="headline-medium">Filled Button</h2>
+      <h3 class="title-large">Default</h3>
+      <dim-filled-button>Label</dim-filled-button>
+      <h3 class="title-large">With Icon</h3>
+      <p>Using an SVG icon might require setting <code>fill="currentColor"</code> or <code>stroke="currentColor"</code>
+        depending on
+        your icon.</p>
+      <dim-filled-button>
+        <svg slot="icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" heigth="48"
+          width="48">
+          <path d="M450-450H200v-60h250v-250h60v250h250v60H510v250h-60v-250Z" />
+        </svg>
+        <span>Label</span>
+      </dim-filled-button>
+      <h3 class="title-large">Disabled</h3>
+      <dim-filled-button disabled>
+        <svg slot="icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" heigth="48"
+          width="48">
+          <path d="M450-450H200v-60h250v-250h60v250h250v60H510v250h-60v-250Z" />
+        </svg>
+        <span>Label</span>
+      </dim-filled-button>
+      </dim-elevated-button>
 
-    <h2>Filled Button</h2>
-    <h3>Default</h3>
-    <dim-filled-button>Label</dim-filled-button>
-    <h3>With Icon</h3>
-    <p>Using an SVG icon might require setting <code>fill="currentColor"</code> or <code>stroke="currentColor"</code>
-      depending on
-      your icon.</p>
-    <dim-filled-button>
-      <svg slot="icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" heigth="48"
-        width="48">
-        <path d="M450-450H200v-60h250v-250h60v250h250v60H510v250h-60v-250Z" />
-      </svg>
-      <span>Label</span>
-    </dim-filled-button>
-    <h3>Disabled</h3>
-    <dim-filled-button disabled>
-      <svg slot="icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" heigth="48"
-        width="48">
-        <path d="M450-450H200v-60h250v-250h60v250h250v60H510v250h-60v-250Z" />
-      </svg>
-      <span>Label</span>
-    </dim-filled-button>
-    </dim-elevated-button>
+      <h2 class="headline-medium">Filled Tonal Button</h2>
+      <h3 class="title-large">Default</h3>
+      <dim-filled-tonal-button>Label</dim-filled-tonal-button>
+      <h3 class="title-large">With Icon</h3>
+      <p>Using an SVG icon might require setting <code>fill="currentColor"</code> or <code>stroke="currentColor"</code>
+        depending on
+        your icon.</p>
+      <dim-filled-tonal-button>
+        <svg slot="icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" heigth="48"
+          width="48">
+          <path d="M450-450H200v-60h250v-250h60v250h250v60H510v250h-60v-250Z" />
+        </svg>
+        <span>Label</span>
+      </dim-filled-tonal-button>
+      <h3 class="title-large">Disabled</h3>
+      <dim-filled-tonal-button disabled>
+        <svg slot="icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" heigth="48"
+          width="48">
+          <path d="M450-450H200v-60h250v-250h60v250h250v60H510v250h-60v-250Z" />
+        </svg>
+        <span>Label</span>
+      </dim-filled-tonal-button>
 
-    <h2>Filled Tonal Button</h2>
-    <h3>Default</h3>
-    <dim-filled-tonal-button>Label</dim-filled-tonal-button>
-    <h3>With Icon</h3>
-    <p>Using an SVG icon might require setting <code>fill="currentColor"</code> or <code>stroke="currentColor"</code>
-      depending on
-      your icon.</p>
-    <dim-filled-tonal-button>
-      <svg slot="icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" heigth="48"
-        width="48">
-        <path d="M450-450H200v-60h250v-250h60v250h250v60H510v250h-60v-250Z" />
-      </svg>
-      <span>Label</span>
-    </dim-filled-tonal-button>
-    <h3>Disabled</h3>
-    <dim-filled-tonal-button disabled>
-      <svg slot="icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" heigth="48"
-        width="48">
-        <path d="M450-450H200v-60h250v-250h60v250h250v60H510v250h-60v-250Z" />
-      </svg>
-      <span>Label</span>
-    </dim-filled-tonal-button>
-
-    <h2>Outlined Button</h2>
-    <h3>Default</h3>
-    <dim-outlined-button>Label</dim-outlined-button>
-    <h3>With Icon</h3>
-    <dim-outlined-button>
-      <svg slot="icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" heigth="48"
-        width="48">
-        <path d="M450-450H200v-60h250v-250h60v250h250v60H510v250h-60v-250Z" />
-      </svg>
-      <span>Label</span>
-    </dim-outlined-button>
-    <h3>Disabled</h3>
-    <dim-outlined-button disabled>
-      <svg slot="icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" heigth="48"
-        width="48">
-        <path d="M450-450H200v-60h250v-250h60v250h250v60H510v250h-60v-250Z" />
-      </svg>
-      <span>Label</span>
-    </dim-outlined-button>
-    <h2>Text Button</h2>
-    <h3>Default</h3>
-    <dim-text-button>Label</dim-text-button>
-    <h3>With Icon</h3>
-    <dim-text-button>
-      <svg slot="icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" heigth="48"
-        width="48">
-        <path d="M450-450H200v-60h250v-250h60v250h250v60H510v250h-60v-250Z" />
-      </svg>
-      <span>Label</span>
-    </dim-text-button>
-    <h3>Disabled</h3>
-    <dim-text-button disabled>
-      <svg slot="icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" heigth="48"
-        width="48">
-        <path d="M450-450H200v-60h250v-250h60v250h250v60H510v250h-60v-250Z" />
-      </svg>
-      <span>Label</span>
-    </dim-text-button>
-  </main>
+      <h2 class="headline-medium">Outlined Button</h2>
+      <h3 class="title-large">Default</h3>
+      <dim-outlined-button>Label</dim-outlined-button>
+      <h3 class="title-large">With Icon</h3>
+      <dim-outlined-button>
+        <svg slot="icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" heigth="48"
+          width="48">
+          <path d="M450-450H200v-60h250v-250h60v250h250v60H510v250h-60v-250Z" />
+        </svg>
+        <span>Label</span>
+      </dim-outlined-button>
+      <h3 class="title-large">Disabled</h3>
+      <dim-outlined-button disabled>
+        <svg slot="icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" heigth="48"
+          width="48">
+          <path d="M450-450H200v-60h250v-250h60v250h250v60H510v250h-60v-250Z" />
+        </svg>
+        <span>Label</span>
+      </dim-outlined-button>
+      <h2 class="headline-medium">Text Button</h2>
+      <h3 class="title-large">Default</h3>
+      <dim-text-button>Label</dim-text-button>
+      <h3 class="title-large">With Icon</h3>
+      <dim-text-button>
+        <svg slot="icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" heigth="48"
+          width="48">
+          <path d="M450-450H200v-60h250v-250h60v250h250v60H510v250h-60v-250Z" />
+        </svg>
+        <span>Label</span>
+      </dim-text-button>
+      <h3 class="title-large">Disabled</h3>
+      <dim-text-button disabled>
+        <svg slot="icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" heigth="48"
+          width="48">
+          <path d="M450-450H200v-60h250v-250h60v250h250v60H510v250h-60v-250Z" />
+        </svg>
+        <span>Label</span>
+      </dim-text-button>
+    </main>
+  </dim-layout>
 
   <dim-navigation-bar>
 
@@ -248,7 +272,7 @@
 
     <!-- Labels -->
     <dim-section-header>
-      <h2>Labels</h2>
+      <h2 class="headline-medium">Labels</h2>
     </dim-section-header>
 
     <dim-navigation-item label="Label 1" href="labels/1">
