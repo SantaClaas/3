@@ -5,6 +5,7 @@ export class DimLayout extends LitElement {
     @keyframes fill-color-and-elevate {
       to {
         background-color: var(--md-sys-color-surface-container);
+        z-index: var(--md-sys-elevation-level-2-z-index);
         box-shadow: var(--md-sys-elevation-level-2-shadow);
       }
     }
@@ -16,6 +17,8 @@ export class DimLayout extends LitElement {
       --_bar-height: 64px;
       width: 100%;
       height: var(--_bar-height);
+
+      z-index: var(--md-sys-elevation-level-0-z-index);
 
       box-sizing: border-box;
       padding: 8px 4px;
